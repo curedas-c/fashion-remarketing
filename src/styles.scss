@@ -1,11 +1,16 @@
-@import 'themes';
+@import 'theme/modules/nebular.scss';
 
 @import '~@nebular/theme/styles/globals';
 
 @include nb-install() {
   @include nb-theme-global();
 };
+
+@import 'theme/modules/material.scss';
+@import 'theme/base/variables';
+@import 'theme/layouts/layout.component.scss';
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Poppins, "Helvetica Neue", sans-serif; }
