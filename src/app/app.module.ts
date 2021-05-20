@@ -9,8 +9,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ErrorPageComponent } from '@shared/components/error-page/error-page.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+/* import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons'; */
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -28,9 +28,9 @@ import { SharedModule } from '@shared/modules/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
+    /* NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbEvaIconsModule,
+    NbEvaIconsModule, */
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
