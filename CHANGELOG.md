@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](///compare/v1.8.0...v1.9.0) (2021-05-20)
+
+
+### Features
+
+* upgrade angular to version 11 a070a80
+
 ## [1.8.0](///compare/v1.5.0...v1.8.0) (2021-05-19)
 
 
