@@ -59,8 +59,9 @@ const routes: Routes = [
     useHash: true,
     enableTracing: false,
     preloadingStrategy: PreloadAllModules,
-    initialNavigation: true
-  })],
+    initialNavigation: 'enabledNonBlocking',
+    relativeLinkResolution: 'legacy'
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
