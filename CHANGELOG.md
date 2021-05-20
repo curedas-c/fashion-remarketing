@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](///compare/v1.10.0...v1.11.0) (2021-05-20)
+
+
+### Features
+
+* removes nebular d6be2e7
+
 ## [1.10.0](///compare/v1.9.0...v1.10.0) (2021-05-20)
 
 
