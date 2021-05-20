@@ -1208,18 +1208,6 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
 
-"@nebular/eva-icons@6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@nebular/eva-icons/-/eva-icons-6.2.2.tgz#0d771afad4fd6f4a14d276b07deed70b11a296b4"
-  integrity sha512-7gjlzZQuUotEb+Q41wseHfF6SGQQltF7YQP/wdW+QtYQ1YicySjR0fzcCGLjSR0f9y+XUpvCQ/l5GlxIAZZGqg==
-
-"@nebular/theme@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@nebular/theme/-/theme-7.0.0.tgz#e239e19f12159205ffe247bdb03a282b5b721888"
-  integrity sha512-0S9Pans6eevkSgg8aoNG7dypkLeOUsTRLMoBsp7LjjuBIDLGJr9/zf9d8sPZ8uaJvPG1AIOtw89KGwNnhatIGA==
-  dependencies:
-    intersection-observer "0.7.0"
-
 "@ngtools/webpack@12.0.1":
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-12.0.1.tgz#6f8286556053b78355cd3f52d05da395978793ab"
@@ -4818,11 +4806,6 @@ interpret@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
-
-intersection-observer@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.7.0.tgz#ee16bee978db53516ead2f0a8154b09b400bbdc9"
-  integrity sha512-Id0Fij0HsB/vKWGeBe9PxeY45ttRiBmhFyyt/geBdDHBYNctMRTE3dC1U3ujzz3lap+hVXlEcVaB56kZP/eEUg==
 
 ip-regex@^2.1.0:
   version "2.1.0"

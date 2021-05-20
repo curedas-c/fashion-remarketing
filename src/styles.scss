@@ -1,10 +1,10 @@
-@import 'theme/modules/nebular.scss';
+/* @import 'theme/modules/nebular.scss';
 
 @import '~@nebular/theme/styles/globals';
 
 @include nb-install() {
   @include nb-theme-global();
-};
+}; */
 
 @import 'theme/modules/material.scss';
 @import 'theme/base/variables';

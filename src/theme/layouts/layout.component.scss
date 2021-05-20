@@ -39,4 +39,10 @@ app-layout {
         border-radius: 0 10rem 10rem 0;
       }
   }
+
+  mat-sidenav-content {
+    overflow: scroll;
+    padding: 1rem 2rem !important;
+    min-height: 100vh;
+  }
 }
