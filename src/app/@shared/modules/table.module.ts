@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TableComponent } from '@shared/components/table/table.component';
@@ -20,25 +15,22 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const IMPORTS = [
-  FormsModule,
-  ReactiveFormsModule,
   MatIconModule,
   MatButtonModule,
-  MatListModule,
   MatCardModule,
-  MatStepperModule,
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatDatepickerModule,
-  MaterialFileInputModule,
+  MatSortModule,
+  MatTableModule, 
+  MatPaginatorModule,
   MatProgressSpinnerModule,
   MatCheckboxModule
 ];
 @NgModule({
-  declarations: [],
+  declarations: [TableComponent],
   imports: [CommonModule, ...IMPORTS],
-  exports: [...IMPORTS],
+  exports: [...IMPORTS, TableComponent],
   providers: [],
 })
-export class SharedModule {}
+export class TableModule {}

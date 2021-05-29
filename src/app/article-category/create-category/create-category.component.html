@@ -1,0 +1,47 @@
+<section class="wrapper">
+  <mat-stepper [orientation]="(stepperOrientation | async)!" linear="true" #stepper>
+    <mat-step [stepControl]="categoryCreationForm">
+      <form [formGroup]="categoryCreationForm">
+        <ng-template matStepLabel>Créez une Catégorie d'article</ng-template>
+        <div class="flex justify-left column">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Ex: chemises" formControlName="label" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Ex: Des chemises d'exception pour toutes les occasions" formControlName="description" required></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Choisir une image de couverture</mat-label>
+            <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture" [accept]="'image/*'" [required]="true"></ngx-mat-file-input>
+            <mat-icon *ngIf="coverImage.empty" matSuffix>folder</mat-icon>
+            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button mat-flat-button matStepperNext color="primary"
+            [disabled]="!categoryCreationForm.valid" (click)="createCategory()">Créer la Catégorie</button>
+        </div>
+      </form>
+    </mat-step>
+  
+  
+    <!--Step Two-->
+    <mat-step label="Prochaines Etapes">
+      <h2>Vous avez Terminé.</h2>
+      <p>Vous pouvez maintenant ajouter des articles:</p>
+      <div class="flex justify-left">
+        <mat-card routerLink='/dashboard/classroom/create' class="menu-card" color="accent">
+          <mat-card-header>
+            <img mat-card-avatar src="assets/icons/price_tag.svg" alt="avatar">
+            <mat-card-title>Ajouter des produits</mat-card-title>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  
+</section>

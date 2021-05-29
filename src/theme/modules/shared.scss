@@ -1,0 +1,114 @@
+// utilities
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-evenly {
+    justify-content: space-evenly;
+  }
+
+  &.justify-around {
+    justify-content: space-around;
+  }
+
+  &.justify-between {
+    justify-content: space-between;
+  }
+
+  &.justify-left {
+    justify-content: left;
+
+    &>* {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-viewport-width {
+  width: 100vw;
+}
+
+.full-viewport-height {
+  height: 100vh;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.push-right {
+  @media (min-width: 600px) {
+    margin-left: auto;
+  }
+}
+
+// Components
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.menu-card {
+  cursor: pointer;
+  color: $medium;
+  padding: .8rem !important;
+  margin-bottom: 1rem;
+
+  .mat-card-header {
+    align-items: center;
+  }
+
+  &:hover {
+    background-color: $primary_shade;
+  }
+}
+
+.button-warn {
+  color: $warning;
+
+  &:hover {
+    background-color: $warning_shade;
+  }
+}
+
+.requestError {
+  width: 80%;
+  margin: 0 auto;
+
+  @media (min-width: 600px) {
+    width: 60%;
+  }
+
+  @media (min-width: 768px) {
+    width: 45%;
+  }
+}

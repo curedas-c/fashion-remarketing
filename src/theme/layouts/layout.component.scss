@@ -1,6 +1,6 @@
 app-layout {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
   nb-layout-column,
   nb-layout {
@@ -8,8 +8,9 @@ app-layout {
     max-width: 100vw;
     background-color: $light;
   }
+
   nb-layout-column {
-      padding: 1rem!important;
+    padding: 1rem !important;
   }
 
   mat-toolbar {
@@ -21,28 +22,34 @@ app-layout {
     position: -webkit-sticky;
     top: 0;
     z-index: 1000;
+
     span {
       vertical-align: middle;
     }
   }
 
   mat-list-item {
-      transition: .5s ease-out;
-      cursor: pointer;
-      &.active {
-        background-color: $primary_shade;
-        color: $primary !important;
-        border-radius: 0 10rem 10rem 0;
-      }
-      &:hover:not(.active) {
-        background-color: $medium_shade;
-        border-radius: 0 10rem 10rem 0;
-      }
+    transition: .5s ease-out;
+    cursor: pointer;
+
+    &.active {
+      background-color: $primary_shade;
+      color: $primary !important;
+      border-radius: 0 10rem 10rem 0;
+    }
+
+    &:hover:not(.active) {
+      background-color: $medium_shade;
+      border-radius: 0 10rem 10rem 0;
+    }
+  }
+
+  mat-sidenav-container {
+    min-height: calc(100vh - 64px);
   }
 
   mat-sidenav-content {
+    padding: 1.5rem 2rem !important;
     overflow: scroll;
-    padding: 1rem 2rem !important;
-    min-height: 100vh;
   }
 }

@@ -15,7 +15,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened" [fixedInViewport]="true" [fixedTopGap]="54">
     <mat-list>
-      <mat-list-item *ngFor="let nav of menu" [routerLink]="nav.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: nav.path !== '#/dashboard'}">
+      <mat-list-item *ngFor="let nav of menu" [routerLink]="nav.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
         <mat-icon matListIcon>{{ nav.menu.icon }}</mat-icon>
         <h3 matLine> {{ nav.menu.title }} </h3>
       </mat-list-item>

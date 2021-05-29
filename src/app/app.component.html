@@ -1,1 +1,4 @@
+<mat-progress-bar [class.d-none]="!(loader.value$ | async)" style="position: fixed; top: 0; z-index: 10000;" mode="determinate" [value]="loader.value$ | async">
+</mat-progress-bar>
+<!-- <ngx-loading-bar></ngx-loading-bar> -->
 <router-outlet></router-outlet>
