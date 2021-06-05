@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](///compare/v1.12.0...v1.13.0) (2021-06-05)
+
+
+### Features
+
+* implements article management a39ddba
+
 ## [1.12.0](///compare/v1.11.0...v1.12.0) (2021-05-29)
 
 
