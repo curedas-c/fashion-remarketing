@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
 
+const FORBIDDEN_ENDPOINTS = ['/article', '/article-category'];
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +28,25 @@ export class ApiService {
       };
     }
 
+    const URL = this.url + '/' + endpoint;
+    const baseUrl = URL.split('?')[0];
+    
+    const isTableRelatedRequest = FORBIDDEN_ENDPOINTS.some(endpoint => {
+      const forbiddenUrl = this.url + endpoint;
+      return baseUrl === forbiddenUrl;
+    })
+
+    // set custom headers for ngx-loading-bar when request is not related to a Material Table
+    if (isTableRelatedRequest) {
+      let headers = reqOpts.headers as HttpHeaders;
+      if (!headers) {
+        headers = new HttpHeaders({ ignoreLoadingBar: '' });
+      } else {
+        headers.set('ignoreLoadingBar', '');
+      }
+      reqOpts.headers = headers;
+    }
+
     if (params) {
       reqOpts.params = new HttpParams();
       for (const k in params) {
@@ -35,7 +56,7 @@ export class ApiService {
       }
     }
 
-    return this.http.get(this.url + '/' + endpoint, reqOpts);
+    return this.http.get(URL, reqOpts);
   }
 
   /**

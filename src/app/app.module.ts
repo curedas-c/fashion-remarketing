@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { RequestInterceptor } from '@core/interceptors/request.interceptor';
+import { ErrorInterceptor } from '@core/interceptors/error.interceptor';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -20,8 +22,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // ngx loader
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 @NgModule({
   declarations: [
@@ -46,11 +50,15 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     MatListModule,
     MatNativeDateModule,
     MatProgressBarModule,
+    MatSnackBarModule,
+    LoadingBarHttpClientModule,
     LoadingBarRouterModule,
     LoadingBarModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    {provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

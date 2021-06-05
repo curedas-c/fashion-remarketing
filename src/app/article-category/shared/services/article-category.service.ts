@@ -16,6 +16,7 @@ export class ArticleCategoryService {
    */
   private endpoints = {
     articleCategories: 'article-category',
+    articleCategoriesAll: 'article-category/all',
   };
   constructor(private _apiService: ApiService) {}
 
@@ -46,6 +47,23 @@ export class ArticleCategoryService {
       .pipe(
         map((response: any) => {
           return new ArticleCategory(response.data);
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return observableThrowError(error);
+        })
+      );
+  }
+
+  getAllItems(params?: any): Observable<ArticleCategory[]> {
+    return this._apiService
+      .get(`${this.endpoints.articleCategories}`, params)
+      .pipe(
+        map((response: any) => {
+          const mapped: ArticleCategory[] = response.items.map((res) => {
+            return new ArticleCategory(res);
+          });
+          
+          return mapped || [];
         }),
         catchError((error: HttpErrorResponse) => {
           return observableThrowError(error);

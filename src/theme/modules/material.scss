@@ -1,5 +1,10 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
-@include mat-core();
+$my-custom-typography: mat.define-typography-config(
+  $font-family: Poppins
+);
+
+@include mat.core($my-custom-typography);
 
 $mat-primary-scheme: (
   100: #d1c4e9,

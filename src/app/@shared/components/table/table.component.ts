@@ -1,5 +1,7 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
@@ -26,11 +28,14 @@ import {
   takeUntil,
   tap,
 } from 'rxjs/operators';
+import { inOutAnimation } from '@shared/animations/inOutAnimation';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  animations: [inOutAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit, AfterViewInit {
   @Input() title: string;
@@ -41,7 +46,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() selectable = false;
   @Input() editable = false;
   requestParams: any = {};
-  dataSource: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   selection = new SelectionModel<any>(true, []);
 
   resultsLength = 0;
@@ -56,9 +61,11 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('searchInput') input: ElementRef;
 
-  constructor() {}
+  constructor(private cdRef: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getServerData();
+}
 
   ngAfterViewInit() {
     // server-side search
@@ -69,10 +76,9 @@ export class TableComponent implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         tap(() => {
           const value = this.input.nativeElement.value;
-          if (value.length > 0 && value.length < 4) {
-            return
-          }
-          else {
+          if (value.length > 0 && value.length < 3) {
+            return;
+          } else {
             this.paginator._changePageSize(0);
           }
         })
@@ -113,9 +119,35 @@ export class TableComponent implements OnInit, AfterViewInit {
           return observableOf([]);
         })
       )
-      .subscribe(
-        (data) => (this.dataSource = new MatTableDataSource<any>(data))
-      );
+      .subscribe((data) => {
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.cdRef.detectChanges();
+      });
+  }
+
+  getServerData() {
+    this.isLoadingResults = true;
+    this.dataService!.getTableData()
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        map((data: any) => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data.total_count;
+
+          return data.items;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      )
+      .subscribe((data) => {
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.cdRef.detectChanges();
+      });
   }
 
   // Search
@@ -150,7 +182,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onRemove() {
-    this.remove.emit(this.selection.selected);
+    const selectedIDs = this.selection.selected.map(selection => selection.id);
+    this.remove.emit(selectedIDs);
   }
 
   ngOnDestroy(): void {

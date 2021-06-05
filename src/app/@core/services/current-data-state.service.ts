@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ArticleCategory } from '@shared/models/articleCategory.model';
+import { Article } from '@shared/models/article.model';
 import { Observable } from 'rxjs';
 import { StateService } from './state.service';
 
 interface CurrentDataState {
   articleCategory: ArticleCategory;
+  article: Article;
 }
 
 const initialState: CurrentDataState = {
-  articleCategory: null
+  articleCategory: null,
+  article: null
 };
 
 @Injectable({
@@ -16,6 +19,7 @@ const initialState: CurrentDataState = {
 })
 export class CurrentDataStateService extends StateService<CurrentDataState> {
   articleCategory$: Observable<ArticleCategory> = this.select((state) => state.articleCategory);
+  article$: Observable<Article> = this.select((state) => state.article);
 
   constructor() {
     super(initialState);
@@ -24,6 +28,12 @@ export class CurrentDataStateService extends StateService<CurrentDataState> {
   setCurrentCategory(item: ArticleCategory) {
     this.setState({
       articleCategory: item
+    });
+  }
+
+  setCurrentArticle(item: Article) {
+    this.setState({
+      article: item
     });
   }
 }

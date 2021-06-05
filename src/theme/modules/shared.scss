@@ -44,6 +44,12 @@
   width: 100%;
 }
 
+.full-width-m {
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
 .full-height {
   height: 100%;
 }
@@ -56,18 +62,41 @@
   height: 100vh;
 }
 
-.d-none {
-  display: none !important;
+.tiers {
+  min-width: 30%;
+}
+
+.quart {
+  min-width: 25%;
 }
 
 .text-center {
   text-align: center;
 }
 
+.d-none {
+  display: none !important;
+}
+
 .push-right {
   @media (min-width: 600px) {
     margin-left: auto;
   }
+}
+
+.margin-y {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+// Popups
+
+.popup-warn {
+  background-color: $popup_warning;
+}
+
+.popup-danger {
+  background-color: $popup_danger;
 }
 
 // Components

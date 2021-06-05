@@ -1,0 +1,67 @@
+<mat-card *ngIf="!previewVisible" [@inOutAnimation]>
+  <mat-card-content>
+    <form [formGroup]="creationForm">
+
+      <div class="flex justify-between margin-y">
+        <mat-form-field class="quart full-width-m">
+          <mat-label>Titre de l'article</mat-label>
+          <input matInput formControlName="label" required />
+        </mat-form-field>
+
+        <mat-form-field class="quart full-width-m">
+          <mat-label>Catégories de l'article</mat-label>
+          <mat-select formControlName="categoryIDs" multiple>
+            <mat-option *ngFor="let category of categoryList$ | async" [value]="category.id">{{ category.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="quart full-width-m">
+          <mat-label>Prix de l'article</mat-label>
+          <input matInput formControlName="price" type="number" required />
+        </mat-form-field>
+      </div>
+
+      <div class="flex justify-left margin-y">
+        <mat-form-field matTooltip="Maintenez le bouton 'Ctrl' pour choisir plusieurs images" matTooltipPosition="before" class="full-width">
+          <mat-label>Images de l'article</mat-label>
+          <ngx-mat-file-input #coverImage formControlName="images" placeholder="Choisir une image de couverture"
+            [accept]="'image/*'" [required]="true" [multiple]="true"></ngx-mat-file-input>
+          <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
+            <mat-icon>image</mat-icon>
+          </button>
+          <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="flex justify-left margin-y">
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="margin-y flex justify-left">
+        <button type="button" mat-button mat-flat-button color="primary"
+          [disabled]="!creationForm.valid || isButtonDisabled" (click)="createEvent()">Créer l'article</button>
+        <button type="button" mat-button mat-stroked-button color="primary" [disabled]="!creationForm.valid"
+          (click)="switchPreviewVisibility()">Aperçu</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="previewVisible" [@inOutAnimation]>
+  <mat-card-content>
+    <article>
+      <h1>TO DO: OVERVIEW CARD</h1>
+
+      <div class="margin-y flex justify-left">
+        <button type="button" mat-button mat-stroked-button class="button-warn"
+          (click)="switchPreviewVisibility()">Cacher Aperçu</button>
+      </div>
+    </article>
+  </mat-card-content>
+</mat-card>
