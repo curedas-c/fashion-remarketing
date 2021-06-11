@@ -5,8 +5,8 @@ import { ArticleCategoryService } from '../shared/services/article-category.serv
 import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ApiService } from '@core/services/api.service';
 
-import { tableColumn } from '@shared/models/tableColumn.model';
-import { ArticleCategory } from '@shared/models/articleCategory.model';
+import { tableColumn } from '@shared/models/table/tableColumn.model';
+import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
 
 @Component({
   selector: 'app-list-category',

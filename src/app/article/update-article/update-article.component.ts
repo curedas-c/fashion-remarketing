@@ -9,7 +9,7 @@ import { ArticleCategoryService } from 'src/app/article-category/shared/services
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { Article } from '@shared/models/article.model';
+import { Article } from '@shared/models/article/article.model';
 import { addControl, removeControls } from '@shared/utils/formGroupModifier';
 
 @Component({

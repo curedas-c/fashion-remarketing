@@ -13,7 +13,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { tableColumn } from '../../models/tableColumn.model';
+import { tableColumn } from '../../models/table/tableColumn.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 

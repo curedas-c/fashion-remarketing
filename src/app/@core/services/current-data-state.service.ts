@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ArticleCategory } from '@shared/models/articleCategory.model';
-import { Article } from '@shared/models/article.model';
+import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
+import { Article } from '@shared/models/article/article.model';
 import { Observable } from 'rxjs';
 import { StateService } from './state.service';
 

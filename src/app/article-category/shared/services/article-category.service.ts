@@ -4,8 +4,8 @@ import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ArticleCategory } from '@shared/models/articleCategory.model';
-import { DataTable } from '@shared/models/dataTable.model';
+import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
+import { DataTable } from '@shared/models/table/dataTable.model';
 
 @Injectable({
   providedIn: 'root',

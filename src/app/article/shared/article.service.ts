@@ -5,9 +5,9 @@ import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { DataTable } from '@shared/models/dataTable.model';
+import { DataTable } from '@shared/models/table/dataTable.model';
 import { FileInput } from 'ngx-material-file-input';
-import { Article } from '@shared/models/article.model';
+import { Article } from '@shared/models/article/article.model';
 
 @Injectable({
   providedIn: 'root'

@@ -12,7 +12,7 @@ import { takeUntil, map } from 'rxjs/operators';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 
-import { ArticleCategory } from '@shared/models/articleCategory.model';
+import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
 
 @Component({
   selector: 'app-update-category',

@@ -5,8 +5,8 @@ import { ApiService } from '@core/services/api.service';
 import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ArticleService } from '../shared/article.service';
 
-import { tableColumn } from '@shared/models/tableColumn.model';
-import { Article } from '@shared/models/article.model';
+import { tableColumn } from '@shared/models/table/tableColumn.model';
+import { Article } from '@shared/models/article/article.model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 

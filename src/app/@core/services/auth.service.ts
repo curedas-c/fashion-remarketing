@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '@services/api.service';
-import { ForgotPasswordCredentials } from '@shared/models/forgotPasswordCredentials.model';
-import { LoginCredentials } from '@shared/models/loginCredentials.model';
-import { ResetPasswordCredentials } from '@shared/models/resetPasswordCredentials.model';
+import { ForgotPasswordCredentials } from '@shared/models/auth/forgotPasswordCredentials.model';
+import { LoginCredentials } from '@shared/models/auth/loginCredentials.model';
+import { ResetPasswordCredentials } from '@shared/models/auth/resetPasswordCredentials.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
