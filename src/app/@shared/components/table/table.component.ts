@@ -119,7 +119,22 @@ export class TableComponent implements OnInit, AfterViewInit {
           return observableOf([]);
         })
       )
-      .subscribe((data) => {
+      .subscribe((data: any[]) => {
+        // converts date to date string
+        data.forEach(el => {
+          Object.keys(el).forEach((key:string)=> {
+            console.log(key)
+            if (key.includes('date') || key.includes('Date')) {
+              el[key] = new Date(el[key]).toLocaleDateString(undefined, {
+                weekday: 'short',
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit',
+              });
+            }
+          });
+        })
+
         this.dataSource = new MatTableDataSource<any>(data);
         this.cdRef.detectChanges();
       });
