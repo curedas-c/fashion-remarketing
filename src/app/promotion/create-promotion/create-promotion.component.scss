@@ -1,0 +1,9 @@
+:host ::ng-deep {
+    .mat-chip-list-wrapper {
+        max-height: 30vh;
+        overflow-y: scroll;
+        @media (min-width: 800px) {
+            max-height: 25vh;
+        }
+    }
+}

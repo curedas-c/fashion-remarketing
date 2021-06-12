@@ -1,33 +1,33 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ApiService } from '@core/services/api.service';
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 
+
+import { Promotion } from '@shared/models/promo/promo.model';
 import { DataTable } from '@shared/models/table/dataTable.model';
+import { FormGroup } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
-import { Article } from '@shared/models/article/article.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class PromotionService {
 
   private endpoints = {
-    article: 'article',
-    articleAll: 'article/all',
-    articleDeletion: 'article/delete'
+    promo: 'promotion',
+    promoDeletion: 'promotion/delete'
   };
   constructor(private _apiService: ApiService) { }
 
-  getTableData(params?: any): Observable<DataTable<Article>> {
+  getTableData(params?: any): Observable<DataTable<Promotion>> {
     return this._apiService
-      .get(`${this.endpoints.article}`, params)
+      .get(`${this.endpoints.promo}`, params)
       .pipe(
         map((response: any) => {
-          const mapped: Article[] = response.items.map((res) => {
-            return new Article(res);
+          const mapped: Promotion[] = response.items.map((res) => {
+            return new Promotion(res);
           });
 
           return {
@@ -41,12 +41,12 @@ export class ArticleService {
       );
   }
 
-  getItem(uuid: string | number, params?: any): Observable<Article> {
+  getItem(uuid: string | number, params?: any): Observable<Promotion> {
     return this._apiService
-      .get(`${this.endpoints.article}/${uuid}`, params)
+      .get(`${this.endpoints.promo}/${uuid}`, params)
       .pipe(
         map((response: any) => {
-          return new Article(response.data);
+          return new Promotion(response.data);
         }),
         catchError((error: HttpErrorResponse) => {
           return observableThrowError(error);
@@ -54,7 +54,7 @@ export class ArticleService {
       );
   }
 
-  setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<Article> {
+  setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<Promotion> {
     let formData = new FormData();
 
     Object.keys(item.controls).forEach(key => {
@@ -66,7 +66,7 @@ export class ArticleService {
       }
     });
 
-    const url = !!uuid ? `${this.endpoints.article}/${uuid}` : `${this.endpoints.article}`;
+    const url = !!uuid ? `${this.endpoints.promo}/${uuid}` : `${this.endpoints.promo}`;
 
     const request = !!uuid ? this._apiService.put(url, formData, params) : this._apiService.post(url, formData, params);
 
@@ -79,28 +79,11 @@ export class ArticleService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.post(`${this.endpoints.articleDeletion}`, uuid).pipe(
+    return this._apiService.post(`${this.endpoints.promoDeletion}`, uuid).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);
       })
     );
-  }
-
-  getAllItems(params?: any): Observable<Article[]> {
-    return this._apiService
-      .get(`${this.endpoints.articleAll}`, params)
-      .pipe(
-        map((response: any) => {
-          const mapped: Article[] = response.items.toJson().map((res) => {
-            return new Article(res);
-          });
-          
-          return mapped || [];
-        }),
-        catchError((error: HttpErrorResponse) => {
-          return observableThrowError(error);
-        })
-      );
   }
 }

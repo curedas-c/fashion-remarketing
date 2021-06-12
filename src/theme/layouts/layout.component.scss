@@ -49,7 +49,10 @@ app-layout {
   }
 
   mat-sidenav-content {
-    padding: 1.5rem 2rem !important;
+    padding: 1.5rem 1rem !important;
     overflow: scroll;
+    @media (min-width: 800px) {
+      padding: 1.5rem 2rem !important;
+    }
   }
 }

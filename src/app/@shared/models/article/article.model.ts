@@ -1,5 +1,5 @@
 export class Article {
-    id: string | number;
+    id: string;
     label: string;
     images: string[];
     description: string;
@@ -11,7 +11,7 @@ export class Article {
     discountPrice: number;
 
   constructor(options: {
-    id: string | number;
+    id: string;
     label: string;
     images: string[];
     description: string;

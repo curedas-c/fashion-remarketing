@@ -1,1 +1,14 @@
-<p>promotion works!</p>
+<h1>Gérer les promotions</h1>
+<nav mat-tab-nav-bar ngClass="tabs">
+  <a mat-tab-link  routerLink="/dashboard/promotion/create" [active]="urlContains('/create')" color="primary">
+    Créer
+  </a>
+  <a mat-tab-link  routerLink="/dashboard/promotion/list" [active]="urlContains('/list')" color="primary">
+    Liste des Promotions
+  </a>
+</nav>
+
+<div class="margin-y">
+  <app-create-promotion *ngIf="urlContains('/create')"></app-create-promotion>
+  <app-list-promotion *ngIf="urlContains('/list')"></app-list-promotion>
+</div>

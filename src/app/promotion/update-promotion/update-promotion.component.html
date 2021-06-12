@@ -1,0 +1,88 @@
+<mat-stepper orientation="vertical" linear="true" #stepper>
+    <mat-step [stepControl]="defaultForm">
+      <form [formGroup]="defaultForm">
+        <ng-template matStepLabel>Modifiez la promotion</ng-template>
+        <div class="flex justify-left margin-y">
+          <mat-form-field class="tiers">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="label" placeholder="Promo sur les Mocassins Homme" required />
+          </mat-form-field>
+        </div>
+        <div class="flex justify-left margin-y">
+          <mat-form-field class="quart full-width-m">
+            <mat-label>Date de fin</mat-label>
+            <input matInput formControlName="discountEndDate" [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field class="quart full-width-m">
+            <mat-label>Choisir une image de couverture</mat-label>
+            <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture"
+              [accept]="'image/*'"></ngx-mat-file-input>
+            <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
+              <mat-icon>image</mat-icon>
+            </button>
+            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button mat-flat-button matStepperNext color="primary"
+            [disabled]="!defaultForm.valid">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+  
+  
+    <!--Step Two-->
+    <mat-step [stepControl]="itemsForm" label="Eléments concernés">
+  
+      <form [formGroup]="itemsForm">
+        <div class="flex justify-left margin-y">
+          <mat-form-field class="quart full-width-m">
+            <mat-label>Cette promotion vise des:</mat-label>
+            <mat-select formControlName="target">
+              <mat-option value="category">Catégories d'article</mat-option>
+              <mat-option value="article">Articles</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field class="quart full-width-m">
+            <mat-label>Type de promotion</mat-label>
+            <mat-select formControlName="discountOn">
+              <mat-option value="percentage">Remise (pourcentage)</mat-option>
+              <mat-option value="price">Prix fixe</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field *ngIf="percentageChosen" class="quart full-width-m">
+              <mat-label>Remise (taux %)</mat-label>
+              <input matInput type="number" formControlName="discountPercentage" min="1" max="99" required />
+            </mat-form-field>
+  
+            <mat-form-field *ngIf="priceChosen" class="quart full-width-m">
+              <mat-label>Prix</mat-label>
+              <input matInput type="number" formControlName="discountPrice" min="1" required />
+            </mat-form-field>
+        </div>
+  
+        <div [hidden]="!itemsForm.controls.discountOn.value" class="margin-y">
+          <mat-card-content>
+            <mat-chip-list aria-label="Sélectionnez les éléments">
+              <mat-chip *ngFor="let target of targetList$ | async" [ngClass]="isInList(target) ? 'chip-primary' : ''" (click)="setItem(target)">{{ target.label }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+        </div>
+  
+        <div class="flex justify-left margin-y">
+          <button mat-button mat-flat-button matStepperNext color="primary" (click)="updatePromotion()"
+            [disabled]="!itemsForm.valid || isButtonDisabled">Mettre à jour</button>
+        </div>
+      </form>
+  
+    </mat-step>
+  </mat-stepper>
+  

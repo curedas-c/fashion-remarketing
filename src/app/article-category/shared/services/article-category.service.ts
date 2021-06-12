@@ -56,7 +56,7 @@ export class ArticleCategoryService {
 
   getAllItems(params?: any): Observable<ArticleCategory[]> {
     return this._apiService
-      .get(`${this.endpoints.articleCategories}`, params)
+      .get(`${this.endpoints.articleCategoriesAll}`, params)
       .pipe(
         map((response: any) => {
           const mapped: ArticleCategory[] = response.items.map((res) => {
