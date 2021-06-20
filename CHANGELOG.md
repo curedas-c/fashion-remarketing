@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](///compare/v1.15.0...v1.16.0) (2021-06-20)
+
+
+### Features
+
+* **notification:** implements notification management aba0a15
+
 ## [1.15.0](///compare/v1.14.0...v1.15.0) (2021-06-12)
 
 
