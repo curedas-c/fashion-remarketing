@@ -8,7 +8,7 @@ import { filter, takeUntil } from 'rxjs/operators';
   templateUrl: './promotion.component.html',
   styleUrls: ['./promotion.component.scss']
 })
-export class PromotionComponent implements OnInit {
+export class PromotionComponent implements OnInit, OnDestroy {
 
   activeLink;
   private unsubscribe$ = new Subject();

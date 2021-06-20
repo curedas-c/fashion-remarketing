@@ -1,0 +1,13 @@
+<div *ngIf="itemList" class="margin-y" [@inOutAnimation]>
+      <p *ngIf="listIsEmpty">Aucun elément ne correspond à votre recherche</p>
+
+      <mat-chip-list *ngIf="!multiSelect" aria-label="Sélectionnez l'elément">
+        <mat-chip *ngFor="let item of itemList" (click)="setSelectedItem(item)"
+          [ngClass]="isSelectedItem(item) ? 'chip-primary' : ''">{{ item.label }}</mat-chip>
+      </mat-chip-list>
+
+      <mat-chip-list *ngIf="multiSelect" aria-label="Sélectionnez l'elément">
+        <mat-chip *ngFor="let item of itemList" (click)="setItem(item)"
+          [ngClass]="isInList(item) ? 'chip-primary' : ''">{{ item.label }}</mat-chip>
+      </mat-chip-list>
+  </div>

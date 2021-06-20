@@ -8,13 +8,24 @@ import {
 
 export const removeControls = (
   form: FormGroup,
-  controlNames: string[]
+  controlNames: string[],
+  isWhiteList: boolean = false
 ): FormGroup => {
-  controlNames.forEach((control) => {
-    if (form.controls[control]) {
+  // remove control if it doesn't appear in the list
+  if (isWhiteList) {
+    Object.keys(form.controls).forEach(control => {
+      if (!controlNames.includes(control)) {
         form.removeControl(control);
       }
-  });
+    });
+  }
+  else {
+    controlNames.forEach((control) => {
+      if (form.controls[control]) {
+          form.removeControl(control);
+        }
+    });
+  }
   return form;
 };
 

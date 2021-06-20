@@ -1,1 +1,14 @@
-<p>notification works!</p>
+<h1>Créez des notifications</h1>
+<nav mat-tab-nav-bar ngClass="tabs">
+    <a mat-tab-link  routerLink="/dashboard/notification/create" [active]="urlContains('/create')" color="primary">
+        Créer
+      </a>
+      <a mat-tab-link  routerLink="/dashboard/notification/list" [active]="urlContains('/list')" color="primary">
+        Liste
+      </a>
+</nav>
+
+<div class="margin-y">
+    <app-create-notification *ngIf="urlContains('/create')"></app-create-notification>
+    <app-list-notification *ngIf="urlContains('/list')"></app-list-notification>
+  </div>

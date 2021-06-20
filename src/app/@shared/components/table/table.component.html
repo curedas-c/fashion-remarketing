@@ -1,6 +1,6 @@
 <div class="mat-elevation-z4">
   <mat-card>
-    <mat-card-header class="flex justify-right align-center">
+    <mat-card-header class="flex justify-left align-center">
       <mat-card-title *ngIf="title"> {{ title }}</mat-card-title>
       <div>
         <a mat-button color="warn" (click)="onRemove()" [disabled]="!this.selection.selected.length">Supprimer</a>

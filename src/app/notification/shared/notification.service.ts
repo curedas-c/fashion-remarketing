@@ -1,39 +1,37 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ApiService } from '@core/services/api.service';
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
-
-import { Promotion } from '@shared/models/promo/promo.model';
+import { HttpErrorResponse } from '@angular/common/http';
 import { DataTable } from '@shared/models/table/dataTable.model';
-import { FormGroup } from '@angular/forms';
 import { FileInput } from 'ngx-material-file-input';
+
+import { Notification } from '@shared/models/notification/notification.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PromotionService {
+export class NotificationService {
 
   private endpoints = {
-    promo: 'promotion',
-    promoDeletion: 'promotion/delete',
-    promoAll: 'promotion/all'
+    notification: 'notification',
+    notificationDeletion: 'notification/delete'
   };
   constructor(private _apiService: ApiService) { }
 
-  getTableData(params?: any): Observable<DataTable<Promotion>> {
+  getTableData(params?: any): Observable<DataTable<Notification>> {
     return this._apiService
-      .get(`${this.endpoints.promo}`, params)
+      .get(`${this.endpoints.notification}`, params)
       .pipe(
         map((response: any) => {
-          const mapped: Promotion[] = response.items.map((res) => {
-            return new Promotion(res);
+          const mapped: Notification[] = response.items.map((res) => {
+            return new Notification(res);
           });
 
           return {
             items: mapped,
-            total_count: response.total_count,
+            total_items: response.total_items,
           };
         }),
         catchError((error: HttpErrorResponse) => {
@@ -42,12 +40,12 @@ export class PromotionService {
       );
   }
 
-  getItem(uuid: string | number, params?: any): Observable<Promotion> {
+  getItem(uuid: string | number, params?: any): Observable<Notification> {
     return this._apiService
-      .get(`${this.endpoints.promo}/${uuid}`, params)
+      .get(`${this.endpoints.notification}/${uuid}`, params)
       .pipe(
         map((response: any) => {
-          return new Promotion(response.data);
+          return new Notification(response.data);
         }),
         catchError((error: HttpErrorResponse) => {
           return observableThrowError(error);
@@ -55,7 +53,7 @@ export class PromotionService {
       );
   }
 
-  setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<Promotion> {
+  setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<Notification> {
     let formData = new FormData();
 
     Object.keys(item.controls).forEach(key => {
@@ -67,7 +65,7 @@ export class PromotionService {
       }
     });
 
-    const url = !!uuid ? `${this.endpoints.promo}/${uuid}` : `${this.endpoints.promo}`;
+    const url = !!uuid ? `${this.endpoints.notification}/${uuid}` : `${this.endpoints.notification}`;
 
     const request = !!uuid ? this._apiService.put(url, formData, params) : this._apiService.post(url, formData, params);
 
@@ -80,28 +78,11 @@ export class PromotionService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.post(`${this.endpoints.promoDeletion}`, uuid).pipe(
+    return this._apiService.post(`${this.endpoints.notificationDeletion}`, uuid).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);
       })
     );
-  }
-
-  getAllItems(params?: any): Observable<Promotion[]> {
-    return this._apiService
-      .get(`${this.endpoints.promoAll}`, params)
-      .pipe(
-        map((response: any) => {
-          const mapped: Promotion[] = response.items.map((res) => {
-            return new Promotion(res);
-          });
-          
-          return mapped || [];
-        }),
-        catchError((error: HttpErrorResponse) => {
-          return observableThrowError(error);
-        })
-      );
   }
 }

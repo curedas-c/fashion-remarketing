@@ -1,6 +1,6 @@
 // utilities
 .flex {
-  display: flex;
+  display: flex!important;
   flex-wrap: wrap;
 
   &.justify-center {
@@ -27,8 +27,20 @@
     }
   }
 
+  &.justify-right {
+    justify-content: flex-end!important;
+
+    &>* {
+      margin-left: 1.5rem;
+    }
+  }
+
   &.align-center {
     align-items: center;
+  }
+
+  &.align-start {
+    align-items: flex-start;
   }
 
   &.no-wrap {
@@ -38,6 +50,18 @@
   &.column {
     flex-direction: column;
   }
+
+  .order-1-m {
+    @media (max-width: 800px) {
+      order: 1;
+    }
+  }
+
+  .order-2-m {
+    @media (max-width: 800px) {
+      order: 2;
+    }
+  }
 }
 
 .full-width {
@@ -45,7 +69,7 @@
 }
 
 .full-width-m {
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     width: 100%;
   }
 }

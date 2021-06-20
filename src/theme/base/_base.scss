@@ -8,6 +8,10 @@ body {
   font-family: Poppins, "Helvetica Neue", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 // Scrollbar
 ::-webkit-scrollbar {
   width: 16px;

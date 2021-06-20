@@ -1,0 +1,127 @@
+<mat-stepper orientation="vertical" linear="true" #stepper>
+    <mat-step [stepControl]="messageForm">
+      <form [formGroup]="messageForm">
+        <ng-template matStepLabel>Notification</ng-template>
+
+        <div class="flex justify-between">
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Titre de la notification (facultatif)</mat-label>
+            <input matInput placeholder="Saisir le titre" formControlName="message_title" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Texte de la notification</mat-label>
+            <textarea matInput formControlName="message_text" row="2" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Image de la notification (facultatif)</mat-label>
+            <ngx-mat-file-input #coverImage formControlName="message_image" placeholder="Choisir une image"
+              [accept]="'image/*'" (change)="preview($event)"></ngx-mat-file-input>
+            <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
+              <mat-icon>image</mat-icon>
+            </button>
+            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nom de la notification (facultatif)</mat-label>
+            <input matInput placeholder="Saisir le titre" formControlName="message_name" />
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button mat-flat-button matStepperNext color="primary"
+            [disabled]="!messageForm.valid">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!--Step Two-->
+    <mat-step [stepControl]="targetForm" label="Redirection">
+      <form [formGroup]="targetForm">
+        <div class="flex justify-left">
+          <mat-form-field appearance="outline" class="quart full-width-m">
+            <mat-label>Rediriger au click vers:</mat-label>
+            <mat-select formControlName="target">
+              <mat-option value="none">Rien</mat-option>
+              <mat-option value="article">Article</mat-option>
+              <mat-option value="article-category">Catégorie d'article</mat-option>
+              <mat-option value="promotion">Promotion</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field [class.d-none]="!haveTarget" appearance="outline">
+            <mat-label>Recherche</mat-label>
+            <input matInput #searchInput>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-hint>3 charactères minimum</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <app-chip-selector [itemList]="itemList" (onSelect)="setItem($event)"></app-chip-selector>
+      </form>
+    </mat-step>
+
+    <!--Step Three-->
+    <mat-step [stepControl]="scheduleForm" label="Planification">
+      <form [formGroup]="scheduleForm">
+        <div class="flex justify-left">
+          <mat-form-field appearance="outline" class="tiers full-width-m" [matMenuTriggerFor]="menu">
+            <mat-label>{{ schedulePlaceholder }}</mat-label>
+            <input matInput [readonly]="true" />
+          </mat-form-field>
+
+          <mat-form-field *ngIf="scheduleForm.controls.schedule_time || scheduleForm.controls.schedule_startDate"
+            appearance="outline" [matMenuTriggerFor]="menu">
+            <mat-label>{{ schedulePlaceholder }}</mat-label>
+            <input formControlName="schedule_time" type="time" matInput />
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="scheduleForm.controls.schedule_startDate" class="flex justify-left">
+          <mat-form-field appearance="outline">
+            <mat-label>Periode</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Date de début" formControlName="schedule_startDate" required />
+              <input matEndDate placeholder="Date de Fin" formControlName="schedule_endDate" required />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker touchUi #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+
+        <div class="flex justify-right">
+          <button mat-button mat-flat-button color="primary" [disabled]="!scheduleForm.valid || isButtonDisabled"
+            (click)="createNotification()">Modifier la Planification</button>
+        </div>
+
+
+        <!--Menus-->
+        <mat-menu #menu="matMenu">
+          <p mat-menu-item disabled>
+            <span>Notification unique</span>
+          </p>
+          <button mat-menu-item (click)="setScheduleType(scheduleType.NOW)">
+            <span>Maintenant</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="dateSelector">
+            <span>Planifié</span>
+          </button>
+          <p mat-menu-item disabled>
+            <span>Notifications récurrentes</span>
+          </p>
+          <button mat-menu-item (click)="setScheduleType(scheduleType.EVERYDAY)">
+            <span>Tous les jours</span>
+          </button>
+        </mat-menu>
+        <mat-menu #dateSelector="matMenu">
+          <mat-calendar (selectedChange)="setScheduleDate($event)" [minDate]="today"></mat-calendar>
+        </mat-menu>
+      </form>
+    </mat-step>
+  </mat-stepper>
+  

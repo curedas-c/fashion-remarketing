@@ -123,14 +123,15 @@ export class TableComponent implements OnInit, AfterViewInit {
         // converts date to date string
         data.forEach(el => {
           Object.keys(el).forEach((key:string)=> {
-            console.log(key)
             if (key.includes('date') || key.includes('Date')) {
-              el[key] = new Date(el[key]).toLocaleDateString(undefined, {
-                weekday: 'short',
-                day: '2-digit',
-                month: '2-digit',
-                year: '2-digit',
-              });
+              if (el[key]) {
+                el[key] = new Date(el[key]).toLocaleDateString(undefined, {
+                  weekday: 'short',
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: '2-digit',
+                });
+              }
             }
           });
         })

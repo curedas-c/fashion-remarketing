@@ -3,8 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotificationComponent } from './notification.component';
 
 const routes: Routes = [{
-  path: '',
-  component: NotificationComponent
+  path: '', redirectTo: 'create'
+},
+{
+  path: 'create', component: NotificationComponent 
+},
+{
+  path: 'list', component: NotificationComponent
 }];
 
 @NgModule({

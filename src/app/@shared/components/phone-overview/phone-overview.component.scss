@@ -1,0 +1,28 @@
+:host ::ng-deep {
+  mat-card {
+    padding: .2rem .6rem;
+    padding-right: .1rem;
+    box-shadow: none !important;
+  }
+
+  .phone-overview {
+    padding: 5rem 2rem 1rem 2rem;
+    background: url('/assets/images/notification_overview.png') no-repeat;
+    background-size: cover;
+  }
+
+  .overview-text {
+    max-width: 78%;
+
+    * {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .overview-image {
+    height: 40px;
+    display: block;
+  }
+}

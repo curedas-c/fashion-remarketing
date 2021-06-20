@@ -92,7 +92,7 @@ export class ArticleService {
       .get(`${this.endpoints.articleAll}`, params)
       .pipe(
         map((response: any) => {
-          const mapped: Article[] = response.items.toJson().map((res) => {
+          const mapped: Article[] = response.items.map((res) => {
             return new Article(res);
           });
           
