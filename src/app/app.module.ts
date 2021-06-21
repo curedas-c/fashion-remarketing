@@ -35,7 +35,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     NotFoundPageComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
