@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.18.0 (2021-06-25)
+
+
+### Features
+
+* adds nebular ([031a477](https://github.com/curedas-c/fashion-remarketing/commit/031a477a1c1ef7d5256c9dff07fa65f39742a6c5))
+* adds server side rendering ([045abd6](https://github.com/curedas-c/fashion-remarketing/commit/045abd6a55bae51262251d00d453c88b4a83d348))
+* implenets in-app data management ([e7e42e2](https://github.com/curedas-c/fashion-remarketing/commit/e7e42e24d4747fb301aead6e92ff5da23b76baf3))
+* **notification:** implements notification management ([aba0a15](https://github.com/curedas-c/fashion-remarketing/commit/aba0a1510717bf910146ba8be5d0449728139b42))
+* adds angular material ([5478c57](https://github.com/curedas-c/fashion-remarketing/commit/5478c57fb70b359868a38db3eaa9c443de9f7ca3))
+* adds commitizen and standard-version ([a04579d](https://github.com/curedas-c/fashion-remarketing/commit/a04579d3d6d899e369acf06901f6e802c6780a26))
+* implements article management ([a39ddba](https://github.com/curedas-c/fashion-remarketing/commit/a39ddbafb4c1426ffc0abf72dfcdb605db3700e0))
+* implements article-category management ([4205140](https://github.com/curedas-c/fashion-remarketing/commit/42051404977c687d56d72e3ff0f576e4b0d02d4a))
+* implements main navigation ([707a9f2](https://github.com/curedas-c/fashion-remarketing/commit/707a9f246db8284b901d3ee353c36385119bf34b))
+* implements promotion management ([64c9d02](https://github.com/curedas-c/fashion-remarketing/commit/64c9d0275a57eeb5f10943306e8adcdefafd2d68))
+* makes data-table format date ([7bd2eda](https://github.com/curedas-c/fashion-remarketing/commit/7bd2eda79e283ecbbd099005fb6273d3489c8893))
+* removes nebular ([d6be2e7](https://github.com/curedas-c/fashion-remarketing/commit/d6be2e7f028a0fdfc5583361e1694f92a9faf4cd))
+* removes nebular ([cf97f46](https://github.com/curedas-c/fashion-remarketing/commit/cf97f4628125f11d1f2175839c90268a8d5ab799))
+* upgrade angular to version 11 ([a070a80](https://github.com/curedas-c/fashion-remarketing/commit/a070a800217ef68cc7a1ee6bd9af307d23e52278))
+* **@core:** adds api service ([d4b4ca6](https://github.com/curedas-c/fashion-remarketing/commit/d4b4ca64aa9c7a5a1126b0556746557f54843072))
+* **@core:** adds auth service ([87a96b8](https://github.com/curedas-c/fashion-remarketing/commit/87a96b844fd6f596e41a5383b48ad06ecd670813))
+* **@core:** sets app state ([fd6bd33](https://github.com/curedas-c/fashion-remarketing/commit/fd6bd332357d338498556664153879a9237fd68f))
+
 ## [1.17.0](///compare/v1.16.0...v1.17.0) (2021-06-21)
 
 
