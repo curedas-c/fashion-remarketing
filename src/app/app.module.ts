@@ -14,7 +14,7 @@ import { NotFoundPageComponent } from '@shared/components/not-found-page/not-fou
 
 /* import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons'; */
-
+import { CookieModule } from 'ngx-cookie';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -39,6 +39,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CookieModule.forRoot(),
     /* NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule, */
