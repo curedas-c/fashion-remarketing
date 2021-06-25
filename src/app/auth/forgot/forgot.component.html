@@ -1,0 +1,22 @@
+<div class="login-wrapper flex justify-center align-center">
+  <mat-card class="mat-elevation-z4 tiers full-width-m">
+    <mat-card-content class="flex justify-center align-center column">
+      <form [formGroup]="loginForm">
+        <h2>Réinitialisez votre mot de passe</h2>
+        <p>Nous vous enverrons un mail avec un nouveaux mot de passe</p>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Email" type="email" formControlName="userName" required>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="primary" [disabled]="!loginForm.valid || isButtonDisabled"
+            (click)="getPassword()">Réinitialiser</button>
+        </div>
+        <div class="flex justify-right margin-y">
+          <a routerLink="/auth/login">
+            <h5>Se connecter</h5>
+          </a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

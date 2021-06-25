@@ -8,6 +8,11 @@ body {
   font-family: Poppins, "Helvetica Neue", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
 * {
   box-sizing: border-box;
 }

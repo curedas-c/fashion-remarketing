@@ -3,11 +3,13 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ErrorPageComponent } from '@shared/components/error-page/error-page.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthGuard } from './@core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -42,6 +44,10 @@ const routes: Routes = [
         component: NotFoundPageComponent
       }
     ]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '',

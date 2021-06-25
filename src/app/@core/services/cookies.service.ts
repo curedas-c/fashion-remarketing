@@ -12,7 +12,6 @@ export class CookiesService {
   public setCookie(key: any, content?: any): Observable<any> {
     let date = new Date();
     date.setHours(date.getHours() + 2);
-    // date.setMinutes(date.getMinutes() + 1);
 
     return of(
       this.cookie.put(key, content, {
