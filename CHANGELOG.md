@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.18.0...v1.19.0) (2021-06-25)
+
+
+### Features
+
+* adds cookie service ([387f7ba](https://github.com/curedas-c/fashion-remarketing/commit/387f7ba44ef1a9d218aa20effc694a7522258bf8))
+
 ## 1.18.0 (2021-06-25)
 
 
