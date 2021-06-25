@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.19.0...v1.20.0) (2021-06-25)
+
+
+### Features
+
+* **auth:** implements auth and route guard ([22027f0](https://github.com/curedas-c/fashion-remarketing/commit/22027f0897b09fd34969b3a6b6e99e90b75ef6dd))
+
 ## [1.19.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.18.0...v1.19.0) (2021-06-25)
 
 
