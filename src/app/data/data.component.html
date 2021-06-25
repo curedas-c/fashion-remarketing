@@ -1,1 +1,27 @@
-<p>data works!</p>
+<h1>Gérez vos données</h1>
+<nav mat-tab-nav-bar ngClass="tabs">
+  <a mat-tab-link routerLink="/dashboard/data/contacts-in-app" [active]="urlContains('/contacts-in-app')"
+    color="primary">
+    Données de contacts
+  </a>
+  <a mat-tab-link routerLink="/dashboard/data/notification" [active]="urlContains('/notification')" color="primary">
+    Notifications
+  </a>
+</nav>
+
+<div class="margin-y">
+
+  <div *ngIf="isLoading && !appSettings" class="full-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <section *ngIf="!isLoading && !appSettings" class="requestError flex column justify-center align-center text-center">
+    <img src="assets/icons/cloud_cross.svg" alt="error" width="60%" />
+    <h2 class="text">Ooupps! <br> Une erreur s'est produite</h2>
+    <button mat-raised-button color="accent" (click)="getData()">Réessayer <mat-icon matSuffix>refresh</mat-icon>
+    </button>
+  </section>
+
+  <app-contact-data *ngIf="urlContains('/contacts-in-app') && appSettings" [data]="appSettings"></app-contact-data>
+  <app-notification-data *ngIf="urlContains('/notification') && appSettings" [data]="appSettings"></app-notification-data>
+</div>

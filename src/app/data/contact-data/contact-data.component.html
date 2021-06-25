@@ -1,0 +1,50 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel class="mat-elevation-z4">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>email</mat-icon>
+        Addresse e-mail
+      </mat-panel-title>
+      <mat-panel-description>
+        E-mail affichée dans l'application
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="mailForm" class="flex justify-left align-center">
+      <mat-form-field class="tiers full-width-m">
+        <mat-label>Email</mat-label>
+        <input formControlName="mail" matInput type="email" required>
+      </mat-form-field>
+
+      <button mat-button mat-stroked-button color="primary" [disabled]="!mailForm.valid || isButtonDisabled"
+        (click)="updateMail()">Mettre à
+        jour</button>
+    </form>
+
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel  class="mat-elevation-z4">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>phone</mat-icon>
+        Numéro de téléphone
+      </mat-panel-title>
+      <mat-panel-description>
+        Contact affiché dans l'application
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="contactForm" class="flex justify-left align-center">
+      <mat-form-field class="tiers full-width-m">
+        <mat-label>Numéro de téléphone (10 chiffres)</mat-label>
+        <input formControlName="contact_first" matInput type="tel" required>
+      </mat-form-field>
+
+      <button mat-button mat-stroked-button color="primary" [disabled]="!contactForm.valid || isButtonDisabled"
+        (click)=" updateContact()">Mettre à
+        jour</button>
+    </form>
+
+  </mat-expansion-panel>
+</mat-accordion>

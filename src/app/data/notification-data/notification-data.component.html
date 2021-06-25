@@ -1,0 +1,25 @@
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel class="mat-elevation-z4">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>contact_mail</mat-icon>
+        E-mail de notification
+      </mat-panel-title>
+      <mat-panel-description>
+        Pour la reception de mail
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="mailForm" class="flex justify-left align-center">
+      <mat-form-field class="tiers full-width-m">
+        <mat-label>Email</mat-label>
+        <input formControlName="notification_mail" matInput type="email" required>
+      </mat-form-field>
+
+      <button mat-button mat-stroked-button color="primary" [disabled]="!mailForm.valid || isButtonDisabled"
+        (click)="updateMail()">Mettre à
+        jour</button>
+    </form>
+
+  </mat-expansion-panel>
+</mat-accordion>

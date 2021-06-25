@@ -23,7 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.error) {
           if (error.status === 0) {
-            this.snackBar.open('Veuillez vérifier votre accès à internet', 'Fermer', {
+            this.snackBar.open(`Une erreur s'est produite ou vous n'avez pas accès à internet`, 'Fermer', {
               duration: 5000,
               horizontalPosition: this.horizontalPosition,
               panelClass: 'popup-danger'

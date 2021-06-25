@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng run fashion-remarketing:serve-ssr",
+    "serve": "ng serve --host=0.0.0.0 --port=4400",
     "start": "node dist/server/main.js",
     "build": "ng run fashion-remarketing:prerender && ng run fashion-remarketing:server",
     "prerender": "ng run fashion-remarketing:prerender",
     "start:ng": "node server.js",
-    "serve:ng": "ng serve --host=0.0.0.0 --port=4400",
     "build:ng": "ng build --configuration production",
     "commit": "git-cz && npm run update:version",
     "update:version": "standard-version"

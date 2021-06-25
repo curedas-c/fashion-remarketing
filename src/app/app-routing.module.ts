@@ -56,7 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true,
+    useHash: false,
     enableTracing: false,
     preloadingStrategy: PreloadAllModules,
     initialNavigation: 'enabledNonBlocking',

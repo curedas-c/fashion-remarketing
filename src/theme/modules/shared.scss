@@ -165,3 +165,12 @@
     width: 45%;
   }
 }
+
+.full-spinner {
+  min-height: 40vh;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
