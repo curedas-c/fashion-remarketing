@@ -7,6 +7,6 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'fashion-remarketing';
+  title = 'Remarket my Business';
   constructor(public loader: LoadingBarService) {}
 }
