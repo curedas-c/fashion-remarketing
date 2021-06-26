@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.22.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.21.0...v1.22.0) (2021-06-26)
+
+
+### Features
+
+* updates app name ([2375876](https://github.com/curedas-c/fashion-remarketing/commit/2375876fda9f3e5a91adc4600ae87fe20f692fc6))
+
 ## [1.21.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.20.0...v1.21.0) (2021-06-26)
 
 
