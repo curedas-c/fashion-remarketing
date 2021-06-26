@@ -18,6 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'notification',
+        canActivate: [PaymentGuard],
         loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule)
       },
       {

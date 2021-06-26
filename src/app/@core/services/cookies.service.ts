@@ -14,7 +14,7 @@ export class CookiesService {
     date.setHours(date.getHours() + 2);
 
     return of(
-      this.cookie.put(key, content, {
+      this.cookie.put(key, JSON.stringify(content), {
         expires: date,
         secure: environment.production ? true : false,
         httpOnly: environment.production ? true : false,
@@ -24,7 +24,7 @@ export class CookiesService {
   }
 
   public getCookie(key: any): Observable<any> {
-    return of(this.cookie.get(key) || null);
+    return of(JSON.parse(this.cookie.get(key)) || null);
   }
 
   public clearCookie(key: any): Observable<boolean> {
