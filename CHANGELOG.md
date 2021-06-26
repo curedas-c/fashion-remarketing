@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.20.0...v1.21.0) (2021-06-26)
+
+
+### Features
+
+* implements guards for payment ([7d196fc](https://github.com/curedas-c/fashion-remarketing/commit/7d196fc39355367f8c41c7150c2d4d1cd9b839f6))
+
 ## [1.20.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.19.0...v1.20.0) (2021-06-25)
 
 
