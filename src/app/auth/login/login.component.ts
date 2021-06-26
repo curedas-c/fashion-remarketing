@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 import { CookiesService } from '@core/services/cookies.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { CookiesService } from '@core/services/cookies.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   loginForm: FormGroup;
   isButtonDisabled = false;
 
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private cookie: CookiesService
+    private cookie: CookiesService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +51,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (res) => {
+          if (res.paymentDueDate) {
+            this.snackBar.open(`Votre abonnement prend fin le: ${res.paymentDueDate}`, 'Fermer', {
+              horizontalPosition: this.horizontalPosition,
+              panelClass: 'popup-danger'
+            });
+          }
           this.cookie
-            .setCookie('credentials', res.credentials)
+            .setCookie('credentials', {...res})
             .subscribe(() => {
               this.router.navigate(['/']);
             });

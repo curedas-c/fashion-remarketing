@@ -4,6 +4,7 @@ import { ErrorPageComponent } from '@shared/components/error-page/error-page.com
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthGuard } from './@core/guards/auth.guard';
+import { PaymentGuard } from '@core/guards/payment.guard';
 
 const routes: Routes = [
   {
@@ -17,10 +18,12 @@ const routes: Routes = [
       },
       {
         path: 'notification',
+        canActivate: [PaymentGuard],
         loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule)
       },
       {
         path: 'promotion',
+        canActivate: [PaymentGuard],
         loadChildren: () => import('./promotion/promotion.module').then(m => m.PromotionModule)
       },
       {

@@ -5,17 +5,14 @@ import { map } from 'rxjs/operators';
 import { CookiesService } from '../services/cookies.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private cookie: CookiesService,
-    private router: Router
-  ) {}
+  constructor(private cookie: CookiesService, private router: Router) {}
 
   canActivate(): Observable<boolean> | boolean {
     return this.cookie.getCookie('credentials').pipe(
-      map(res => {
+      map((res) => {
         if (!res) {
           this.router.navigate(['/auth']);
         }
