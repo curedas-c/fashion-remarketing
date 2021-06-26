@@ -8,8 +8,8 @@ $my-custom-typography: mat.define-typography-config(
 
 $mat-primary-scheme: (
   100: #d1c4e9,
-  500: #ff3399,
-  700: #ff3399,
+  500: $primary,
+  700: $primary,
   contrast: (
     100: #3c4043,
     500: #ffffff,
