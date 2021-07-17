@@ -30,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             });
           }
           else {
-            this.snackBar.open(error.message, 'Fermer', {
+            this.snackBar.open(error.error.message, 'Fermer', {
               duration: 5000,
               horizontalPosition: this.horizontalPosition,
               panelClass: 'popup-warn'
