@@ -17,8 +17,7 @@ export class PromotionService {
 
   private endpoints = {
     promo: 'promotion',
-    promoDeletion: 'promotion/delete',
-    promoAll: 'promotion/all'
+    promoDeletion: 'promotion/delete'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -90,7 +89,7 @@ export class PromotionService {
 
   getAllItems(params?: any): Observable<Promotion[]> {
     return this._apiService
-      .get(`${this.endpoints.promoAll}`, params)
+      .get(`${this.endpoints.promo}`, params)
       .pipe(
         map((response: any) => {
           const mapped: Promotion[] = response.items.map((res) => {

@@ -16,7 +16,6 @@ export class ArticleService {
 
   private endpoints = {
     article: 'article',
-    articleAll: 'article/all',
     articleDeletion: 'article/delete'
   };
   constructor(private _apiService: ApiService) { }
@@ -89,7 +88,7 @@ export class ArticleService {
 
   getAllItems(params?: any): Observable<Article[]> {
     return this._apiService
-      .get(`${this.endpoints.articleAll}`, params)
+      .get(`${this.endpoints.article}`, params)
       .pipe(
         map((response: any) => {
           const mapped: Article[] = response.items.map((res) => {

@@ -15,8 +15,7 @@ export class ArticleCategoryService {
    * Endpoints
    */
   private endpoints = {
-    articleCategories: 'article-category',
-    articleCategoriesAll: 'article-category/all',
+    articleCategories: 'article-category'
   };
   constructor(private _apiService: ApiService) {}
 
@@ -56,7 +55,7 @@ export class ArticleCategoryService {
 
   getAllItems(params?: any): Observable<ArticleCategory[]> {
     return this._apiService
-      .get(`${this.endpoints.articleCategoriesAll}`, params)
+      .get(`${this.endpoints.articleCategories}`, params)
       .pipe(
         map((response: any) => {
           const mapped: ArticleCategory[] = response.items.map((res) => {
