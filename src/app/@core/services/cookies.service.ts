@@ -24,7 +24,8 @@ export class CookiesService {
   }
 
   public getCookie(key: any): Observable<any> {
-    return of(JSON.parse(this.cookie.get(key)) || null);
+    const cookie = this.cookie.get(key);
+    return of(cookie ? JSON.parse(cookie) : null);
   }
 
   public clearCookie(key: any): Observable<boolean> {
