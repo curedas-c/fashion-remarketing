@@ -15,13 +15,14 @@ export class RequestInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // const secureToken = 'bearer-token';
     const isPUT = req.method === 'PUT';
+    const isPOST = req.method === 'POST';
     
     const modifiedReq = req.clone({
         params: isPUT ? req.params.append('responseType', 'text') : req.params,
         headers: req.headers
         /* .set('Authorization', `Bearer ${secureToken}`) */
         .set('Content-Type', 'application/json')
-        .set('Accept', 'application/json')
+        .set('Accept', isPOST ? 'multipart/form-data':'application/json')
         .set('Access-Control-Allow-Origin', '*'),
     });
     return next.handle(modifiedReq);

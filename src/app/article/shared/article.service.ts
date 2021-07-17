@@ -15,8 +15,7 @@ import { Article } from '@shared/models/article/article.model';
 export class ArticleService {
 
   private endpoints = {
-    article: 'article',
-    articleDeletion: 'article/delete'
+    article: 'article'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -67,7 +66,7 @@ export class ArticleService {
 
     const url = !!uuid ? `${this.endpoints.article}/${uuid}` : `${this.endpoints.article}`;
 
-    const request = !!uuid ? this._apiService.put(url, formData, params) : this._apiService.post(url, formData, params);
+    const request = !!uuid ? this._apiService.patch(url, formData, params) : this._apiService.post(url, formData, params);
 
     return request.pipe(
       map((response: any) => response.data),
@@ -78,7 +77,7 @@ export class ArticleService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.post(`${this.endpoints.articleDeletion}`, uuid).pipe(
+    return this._apiService.delete(`${this.endpoints.article}`, uuid).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);

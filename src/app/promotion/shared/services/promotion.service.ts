@@ -16,8 +16,7 @@ import { FileInput } from 'ngx-material-file-input';
 export class PromotionService {
 
   private endpoints = {
-    promo: 'promotion',
-    promoDeletion: 'promotion/delete'
+    promo: 'promotion'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -68,7 +67,7 @@ export class PromotionService {
 
     const url = !!uuid ? `${this.endpoints.promo}/${uuid}` : `${this.endpoints.promo}`;
 
-    const request = !!uuid ? this._apiService.put(url, formData, params) : this._apiService.post(url, formData, params);
+    const request = !!uuid ? this._apiService.patch(url, formData, params) : this._apiService.post(url, formData, params);
 
     return request.pipe(
       map((response: any) => response.data),
@@ -79,7 +78,7 @@ export class PromotionService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.post(`${this.endpoints.promoDeletion}`, uuid).pipe(
+    return this._apiService.delete(`${this.endpoints.promo}`, uuid).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);

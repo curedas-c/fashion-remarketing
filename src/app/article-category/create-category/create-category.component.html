@@ -14,7 +14,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Choisir une image de couverture</mat-label>
-            <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture" [accept]="'image/*'" [required]="true"></ngx-mat-file-input>
+            <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture" [accept]="'image/*'"></ngx-mat-file-input>
             <mat-icon *ngIf="coverImage.empty" matSuffix>folder</mat-icon>
             <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
               <mat-icon>clear</mat-icon>
@@ -22,8 +22,8 @@
           </mat-form-field>
         </div>
         <div>
-          <button mat-button mat-flat-button matStepperNext color="primary"
-            [disabled]="!categoryCreationForm.valid" (click)="createCategory()">Créer la Catégorie</button>
+          <button mat-button mat-flat-button color="primary"
+            [disabled]="!categoryCreationForm.valid || isButtonDisabled" (click)="createCategory()">Créer la Catégorie</button>
         </div>
       </form>
     </mat-step>

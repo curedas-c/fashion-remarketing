@@ -15,8 +15,7 @@ import { Notification } from '@shared/models/notification/notification.model';
 export class NotificationService {
 
   private endpoints = {
-    notification: 'notification',
-    notificationDeletion: 'notification/delete'
+    notification: 'notification'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -67,7 +66,7 @@ export class NotificationService {
 
     const url = !!uuid ? `${this.endpoints.notification}/${uuid}` : `${this.endpoints.notification}`;
 
-    const request = !!uuid ? this._apiService.put(url, formData, params) : this._apiService.post(url, formData, params);
+    const request = !!uuid ? this._apiService.patch(url, formData, params) : this._apiService.post(url, formData, params);
 
     return request.pipe(
       map((response: any) => response.data),
@@ -78,7 +77,7 @@ export class NotificationService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.post(`${this.endpoints.notificationDeletion}`, uuid).pipe(
+    return this._apiService.delete(`${this.endpoints.notification}`, uuid).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);

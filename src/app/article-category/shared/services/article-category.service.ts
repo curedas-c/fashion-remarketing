@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
 import { DataTable } from '@shared/models/table/dataTable.model';
+import { FormGroup } from '@angular/forms';
+import { FileInput } from 'ngx-material-file-input';
 
 @Injectable({
   providedIn: 'root',
@@ -69,4 +71,29 @@ export class ArticleCategoryService {
         })
       );
   }
+
+  setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<ArticleCategory> {
+    let formData = new FormData();
+
+    Object.keys(item.controls).forEach(key => {
+      const value = item.controls[key].value;
+      if (value.constructor === FileInput) {
+        formData.append(key, value.files[0]);
+      } else {
+        formData.append(key, value);
+      }
+    });
+
+    const url = !!uuid ? `${this.endpoints.articleCategories}/${uuid}` : `${this.endpoints.articleCategories}`;
+
+    const request = !!uuid ? this._apiService.patch(url, formData, params) : this._apiService.post(url, formData, params);
+
+    return request.pipe(
+      map((response: any) => response.data),
+      catchError((error: HttpErrorResponse) => {
+        return observableThrowError(error);
+      })
+    );
+  }
+
 }
