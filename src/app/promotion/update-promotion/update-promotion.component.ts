@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Subject, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 
 import { removeControls, addControl } from '@shared/utils/formGroupModifier';
 
@@ -111,13 +111,10 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     });
     this.promoService
       .setItem(formGroups, this.currentPromotion.id)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           console.log(res);
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }

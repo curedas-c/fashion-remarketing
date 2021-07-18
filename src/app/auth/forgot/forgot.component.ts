@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 
@@ -39,15 +39,12 @@ export class ForgotComponent implements OnInit, OnDestroy {
     this.switchButtonState();
     this.auth
       .forgotPassword(this.loginForm.value)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           this.snackBar.open(`Veuillez Consulter vos mails pour récuperer votre nouveau mot de passe`, 'Fermer', {
             horizontalPosition: this.horizontalPosition
           });
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.27.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.26.1...v1.27.0) (2021-07-18)
+
+
+### Features
+
+* use finalize operator instead of complete callback ([6574979](https://github.com/curedas-c/fashion-remarketing/commit/6574979c88b9c396e38cb552e149adb661deb80f))
+
 ### [1.26.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.26.0...v1.26.1) (2021-07-18)
 
 

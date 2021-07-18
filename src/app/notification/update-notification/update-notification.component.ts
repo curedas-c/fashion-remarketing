@@ -12,6 +12,7 @@ import { fromEvent, Subject } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
+  finalize,
   takeUntil,
   tap,
 } from 'rxjs/operators';
@@ -276,13 +277,10 @@ export class UpdateNotificationComponent implements OnInit, OnDestroy, AfterView
     });
     this.notificationService
       .setItem(DATA)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           console.log(res);
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }

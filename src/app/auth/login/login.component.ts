@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 import { CookiesService } from '@core/services/cookies.service';
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.switchButtonState();
     this.auth
       .login(this.loginForm.value)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           if (res.paymentDueDate) {
@@ -62,9 +62,6 @@ export class LoginComponent implements OnInit, OnDestroy {
             .subscribe(() => {
               this.router.navigate(['/']);
             });
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }

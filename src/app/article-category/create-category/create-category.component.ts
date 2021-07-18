@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { finalize, map, takeUntil } from 'rxjs/operators';
 import { ArticleCategoryService } from '../shared/services/article-category.service';
 
 @Component({
@@ -44,13 +44,10 @@ export class CreateCategoryComponent implements OnInit, OnDestroy {
     this.switchButtonState();
     this.categoryService
       .setItem(this.categoryCreationForm)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           console.log(res);
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }

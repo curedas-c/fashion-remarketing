@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { inOutAnimation } from '@shared/animations/inOutAnimation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { ArticleService } from '../shared/article.service';
 import { ArticleCategoryService } from 'src/app/article-category/shared/services/article-category.service';
 
@@ -47,13 +47,10 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
     this.switchButtonState();
     this.articleService
       .setItem(this.creationForm)
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
           console.log(res);
-        },
-        (complete) => {
-          this.switchButtonState();
         }
       );
   }
