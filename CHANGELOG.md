@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.26.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.26.0...v1.26.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* **app-settings:** fix getting and settings app settings not working ([c6cee2b](https://github.com/curedas-c/fashion-remarketing/commit/c6cee2bbe45817b83fbc2636040461a327cf39b6))
+
 ## [1.26.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.25.1...v1.26.0) (2021-07-18)
 
 
