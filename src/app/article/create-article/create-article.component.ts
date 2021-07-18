@@ -37,7 +37,7 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
     this.creationForm = this.fb.group({
       label: ['', [Validators.required]],
       images: ['', [Validators.required]],
-      categoryIDs: ['', [Validators.required]],
+      categories: ['', [Validators.required]],
       price: ['', [Validators.required]],
       description: ['', [Validators.required]]
     });

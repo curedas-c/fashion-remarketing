@@ -10,7 +10,7 @@
   
           <mat-form-field class="quart full-width-m">
             <mat-label>Catégories de l'article</mat-label>
-            <mat-select formControlName="categoryIDs" multiple>
+            <mat-select formControlName="categories" multiple>
               <mat-option *ngFor="let category of categoryList$ | async" [value]="category.id">{{ category.label }}
               </mat-option>
             </mat-select>

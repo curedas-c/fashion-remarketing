@@ -5,26 +5,42 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { mergeMap, catchError } from 'rxjs/operators';
+import { CookiesService } from '../services/cookies.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
+  constructor(private cookies: CookiesService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // const secureToken = 'bearer-token';
-    const isPUT = req.method === 'PUT';
-    const isPOST = req.method === 'POST';
-    
-    const modifiedReq = req.clone({
-        params: isPUT ? req.params.append('responseType', 'text') : req.params,
-        headers: req.headers
-        /* .set('Authorization', `Bearer ${secureToken}`) */
-        .set('Content-Type', 'application/json')
-        .set('Accept', isPOST ? 'multipart/form-data':'application/json')
-        .set('Access-Control-Allow-Origin', '*'),
-    });
-    return next.handle(modifiedReq);
+    return this.cookies.getCookie('credentials').pipe(
+      mergeMap((credential) => {
+        const isPUT = req.method === 'PUT';
+        const isPOSTOrPUT = req.method === 'POST' || req.method === 'PUT';
+
+        const modifiedReq = req.clone({
+          params: isPUT
+            ? req.params.append('responseType', 'text')
+            : req.params,
+          headers: req.headers
+            .set('Authorization', `Bearer ${credential.access_token}`)
+            // .set('Content-Type', 'application/json')
+            .set(
+              'Accept',
+              isPOSTOrPUT ? 'multipart/form-data' : 'application/json'
+            )
+            .set('Access-Control-Allow-Origin', '*')
+        });
+
+        return next.handle(modifiedReq).pipe(
+          catchError((error) => {
+            return throwError(error);
+          })
+        );
+      })
+    );
   }
 }

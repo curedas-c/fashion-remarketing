@@ -26,15 +26,15 @@ export class ListPromotionComponent implements OnInit {
       label: 'Description',
     },
     {
-      name: 'discountEndDate',
+      name: 'endDate',
       label: 'Date de fin',
     },
     {
-      name: 'discountPercentage',
+      name: 'percentage',
       label: 'Pourcentage de remise',
     },
     {
-      name: 'discountPrice',
+      name: 'fixedPrice',
       label: 'Prix promotionnel (produit)',
     },
   ];
@@ -42,9 +42,9 @@ export class ListPromotionComponent implements OnInit {
     'select_action',
     'edit_action',
     'label',
-    'discountEndDate',
-    'discountPercentage',
-    'discountPrice',
+    'endDate',
+    'percentage',
+    'fixedPrice',
   ];
   private unsubscribe$ = new Subject();
   constructor(public dialog: MatDialog, private apiService: ApiService, private promoService: PromotionService) { }

@@ -2,29 +2,29 @@ export class Promotion {
     id: string;
     label: string;
     main_image: string;
-    discountEndDate: string;
-    discountPercentage: number;
-    discountPrice: number;
-    categoryIDs: string[];
-    articleIDs: string[];
+    endDate: string;
+    percentage: number;
+    fixedPrice: number;
+    categories: string[];
+    articles: string[];
 
   constructor(options: {
     id: string;
     label: string;
     main_image: string;
-    discountEndDate: string;
-    discountPercentage: number;
-    discountPrice: number;
-    categoryIDs: string[];
-    articleIDs: string[];
+    endDate: string;
+    percentage: number;
+    fixedPrice: number;
+    categories: string[];
+    articles: string[];
   }) {
     this.id = options.id;
     this.label = options.label;
     this.main_image = options.main_image;
-    this.discountPercentage = options.discountPercentage;
-    this.discountEndDate = options.discountEndDate;
-    this.discountPrice = options.discountPrice;
-    this.categoryIDs = options.categoryIDs;
-    this.articleIDs = options.articleIDs;
+    this.percentage = options.percentage;
+    this.endDate = options.endDate;
+    this.fixedPrice = options.fixedPrice;
+    this.categories = options.categories;
+    this.articles = options.articles;
   }
 }

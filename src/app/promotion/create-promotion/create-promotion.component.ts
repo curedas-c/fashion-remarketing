@@ -43,7 +43,7 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
     this.creationForm = this.fb.group({
       label: ['', [Validators.required]],
       main_image: [''],
-      discountEndDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
     });
   }
 
@@ -57,12 +57,12 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((value) => {
         if (value === 'article') {
-          this.itemsForm = removeControls(this.itemsForm, ['categoryIDs']);
-          this.itemsForm = addControl(this.itemsForm, 'articleIDs');
+          this.itemsForm = removeControls(this.itemsForm, ['categories']);
+          this.itemsForm = addControl(this.itemsForm, 'articles');
           this.targetList$ = this.articleService.getAllItems();
         } else if (value === 'category') {
-          this.itemsForm = removeControls(this.itemsForm, ['articleIDs']);
-          this.itemsForm = addControl(this.itemsForm, 'categoryIDs');
+          this.itemsForm = removeControls(this.itemsForm, ['articles']);
+          this.itemsForm = addControl(this.itemsForm, 'categories');
           this.targetList$ = this.categoryService.getAllItems();
         }
       });
@@ -72,12 +72,12 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       .subscribe((value) => {
         if (value === 'price') {
           this.itemsForm = removeControls(this.itemsForm, [
-            'discountPercentage',
+            'percentage',
           ]);
-          this.itemsForm = addControl(this.itemsForm, 'discountPrice');
+          this.itemsForm = addControl(this.itemsForm, 'fixedPrice');
         } else if (value === 'percentage') {
-          this.itemsForm = removeControls(this.itemsForm, ['discountPrice']);
-          this.itemsForm = addControl(this.itemsForm, 'discountPercentage');
+          this.itemsForm = removeControls(this.itemsForm, ['fixedPrice']);
+          this.itemsForm = addControl(this.itemsForm, 'percentage');
         }
       });
   }
@@ -88,6 +88,7 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       ...this.itemsForm.controls,
       ...this.creationForm.controls,
     });
+    console.log(formGroups.value)
     this.promoService
       .setItem(formGroups)
       .pipe(takeUntil(this.unsubscribe$))
@@ -112,9 +113,9 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       this.targetList = [...this.targetList, item];
     }
     if (this.itemsForm.controls.target.value === 'article') {
-      this.itemsForm.controls.articleIDs.patchValue(this.targetList);
+      this.itemsForm.controls.articles.patchValue(this.targetList);
     } else {
-      this.itemsForm.controls.categoryIDs.patchValue(this.targetList);
+      this.itemsForm.controls.categories.patchValue(this.targetList);
     }
   }
 

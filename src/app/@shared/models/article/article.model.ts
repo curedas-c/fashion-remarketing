@@ -1,36 +1,32 @@
+import { Promotion } from "../promo/promo.model";
+
 export class Article {
     id: string;
     label: string;
     images: string[];
     description: string;
-    categoryIDs: string[];
+    categories: string[];
     price: number;
-    onDiscount: boolean;
-    discountEndDate: string;
-    discountPercentage: number;
-    discountPrice: number;
+    promotion: Promotion;
+    categoryPromotion: Promotion;
 
   constructor(options: {
     id: string;
     label: string;
     images: string[];
     description: string;
-    categoryIDs: string[];
+    categories: string[];
     price: number;
-    onDiscount: boolean;
-    discountEndDate: string;
-    discountPercentage: number;
-    discountPrice: number;
+    promotion: Promotion;
+    categoryPromotion: Promotion;
   }) {
     this.id = options.id;
     this.label = options.label;
     this.images = options.images;
     this.description = options.description;
-    this.categoryIDs = options.categoryIDs;
+    this.categories = options.categories;
     this.price = options.price;
-    this.onDiscount = options.onDiscount;
-    this.discountPercentage = options.discountPercentage;
-    this.discountEndDate = options.discountEndDate;
-    this.discountPrice = options.discountPrice;
+    this.promotion = options.promotion;
+    this.categoryPromotion = options.categoryPromotion;
   }
 }
