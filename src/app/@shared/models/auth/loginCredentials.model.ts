@@ -1,12 +1,12 @@
 export class LoginCredentials {
-    userName: string;
+    username: string;
     password: string;
 
   constructor(options: {
-    userName: string;
+    username: string;
     password: string;
   }) {
-    this.userName = options.userName;
+    this.username = options.username;
     this.password = options.password;
   }
 }

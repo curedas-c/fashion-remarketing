@@ -1,14 +1,14 @@
 export class ResetPasswordCredentials {
-    userName: string;
+    username: string;
     password: string;
     password_confirmation: string;
 
   constructor(options: {
-    userName: string;
+    username: string;
     password: string;
     password_confirmation: string;
   }) {
-    this.userName = options.userName;
+    this.username = options.username;
     this.password = options.password;
     this.password_confirmation = options.password_confirmation;
   }

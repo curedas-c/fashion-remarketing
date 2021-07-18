@@ -31,7 +31,7 @@ export class ForgotComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
     });
   }
 

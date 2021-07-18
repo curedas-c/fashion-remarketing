@@ -14,10 +14,10 @@ import { LoginCredentials } from '@shared/models/auth/loginCredentials.model';
 export class AuthService {
 
   private authEndpoint = {
-    login: 'auth/login',
-    forgotPassword: 'auth/password/forgot',
-    resetPassword: 'auth/password/reset',
-    logout: 'auth/logout'
+    login: 'admin/login',
+    forgotPassword: 'admin/password/forgot',
+    resetPassword: 'admin/password/reset',
+    logout: 'admin/logout'
   };
 
   constructor(private _apiService: ApiService) {}
