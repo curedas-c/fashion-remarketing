@@ -1,6 +1,6 @@
 {
   "name": "fashion-remarketing",
-  "version": "1.25.0",
+  "version": "1.25.1",
   "scripts": {
     "ng": "ng",
     "dev": "ng run fashion-remarketing:serve-ssr",
