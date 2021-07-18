@@ -5,7 +5,7 @@ export class Article {
     label: string;
     images: string[];
     description: string;
-    categories: string[];
+    category: string[];
     price: number;
     promotion: Promotion;
     categoryPromotion: Promotion;
@@ -15,7 +15,7 @@ export class Article {
     label: string;
     images: string[];
     description: string;
-    categories: string[];
+    category: string[];
     price: number;
     promotion: Promotion;
     categoryPromotion: Promotion;
@@ -24,7 +24,7 @@ export class Article {
     this.label = options.label;
     this.images = options.images;
     this.description = options.description;
-    this.categories = options.categories;
+    this.category = options.category;
     this.price = options.price;
     this.promotion = options.promotion;
     this.categoryPromotion = options.categoryPromotion;

@@ -5,7 +5,7 @@ export class Promotion {
     endDate: string;
     percentage: number;
     fixedPrice: number;
-    categories: string[];
+    category: string[];
     articles: string[];
 
   constructor(options: {
@@ -15,7 +15,7 @@ export class Promotion {
     endDate: string;
     percentage: number;
     fixedPrice: number;
-    categories: string[];
+    category: string[];
     articles: string[];
   }) {
     this.id = options.id;
@@ -24,7 +24,7 @@ export class Promotion {
     this.percentage = options.percentage;
     this.endDate = options.endDate;
     this.fixedPrice = options.fixedPrice;
-    this.categories = options.categories;
+    this.category = options.category;
     this.articles = options.articles;
   }
 }

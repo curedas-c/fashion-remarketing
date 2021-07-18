@@ -57,12 +57,12 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((value) => {
         if (value === 'article') {
-          this.itemsForm = removeControls(this.itemsForm, ['categories']);
+          this.itemsForm = removeControls(this.itemsForm, ['category']);
           this.itemsForm = addControl(this.itemsForm, 'articles');
           this.targetList$ = this.articleService.getAllItems();
         } else if (value === 'category') {
           this.itemsForm = removeControls(this.itemsForm, ['articles']);
-          this.itemsForm = addControl(this.itemsForm, 'categories');
+          this.itemsForm = addControl(this.itemsForm, 'category');
           this.targetList$ = this.categoryService.getAllItems();
         }
       });
@@ -112,7 +112,7 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
     if (this.itemsForm.controls.target.value === 'article') {
       this.itemsForm.controls.articles.patchValue(this.targetList);
     } else {
-      this.itemsForm.controls.categories.patchValue(this.targetList);
+      this.itemsForm.controls.category.patchValue(this.targetList);
     }
   }
 

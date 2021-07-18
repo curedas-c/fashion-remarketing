@@ -65,7 +65,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     this.defaultForm = this.fb.group({
       label: [this.currentArticle.label, [Validators.required]],
       description: [this.currentArticle.description, [Validators.required]],
-      categories: [this.currentArticle.categories, [Validators.required]],
+      category: [this.currentArticle.category, [Validators.required]],
       price: [this.currentArticle.price, [Validators.required]]
     });
   }

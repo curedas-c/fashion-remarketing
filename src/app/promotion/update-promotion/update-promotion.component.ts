@@ -37,7 +37,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     private articleService: ArticleService
   ) {
     this.currentPromotion = this.data.currentPromotion;
-    const items = this.currentPromotion.categories ? this.currentPromotion.categories : this.currentPromotion.articles;
+    const items = this.currentPromotion.category ? this.currentPromotion.category : this.currentPromotion.articles;
     this.targetList = items;
   }
 
@@ -65,7 +65,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
       discountOn: ['', [Validators.required]],
     });
     this.listenToControlsChanges();
-    const target = this.currentPromotion.categories ? 'category' : 'article';
+    const target = this.currentPromotion.category ? 'category' : 'article';
     const discountOn = this.currentPromotion.percentage ? 'percentage' : 'price';
     this.itemsForm.controls.target.patchValue(target);
     this.itemsForm.controls.discountOn.patchValue(discountOn);
@@ -76,12 +76,12 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((value) => {
         if (value === 'article') {
-          this.itemsForm = removeControls(this.itemsForm, ['categories']);
+          this.itemsForm = removeControls(this.itemsForm, ['category']);
           this.itemsForm = addControl(this.itemsForm, 'articles');
           this.targetList$ = this.articleService.getAllItems();
         } else if (value === 'category') {
           this.itemsForm = removeControls(this.itemsForm, ['articles']);
-          this.itemsForm = addControl(this.itemsForm, 'categories');
+          this.itemsForm = addControl(this.itemsForm, 'category');
           this.targetList$ = this.categoryService.getAllItems();
         }
       });
@@ -132,7 +132,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     if (this.itemsForm.controls.target.value === 'article') {
       this.itemsForm.controls.articles.patchValue(this.targetList);
     } else {
-      this.itemsForm.controls.categories.patchValue(this.targetList);
+      this.itemsForm.controls.category.patchValue(this.targetList);
     }
   }
 
