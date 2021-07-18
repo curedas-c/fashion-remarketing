@@ -1,5 +1,5 @@
 export class Notification {
-    id: string;
+    _id: string;
     message_title: string;
     message_text: string;
     message_image: string;
@@ -14,7 +14,7 @@ export class Notification {
     target: string;
 
   constructor(options: {
-    id: string;
+    _id: string;
     message_title: string;
     message_text: string;
     message_image: string;
@@ -28,7 +28,7 @@ export class Notification {
     target_id: string;
     target: string;
   }) {
-    this.id = options.id;
+    this._id = options._id;
     this.message_title = options.message_title;
     this.message_text = options.message_text;
     this.message_image = options.message_image;

@@ -110,7 +110,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
       ...this.defaultForm.controls,
     });
     this.promoService
-      .setItem(formGroups, this.currentPromotion.id)
+      .setItem(formGroups, this.currentPromotion._id)
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {

@@ -18,6 +18,7 @@ export class RequestInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return this.cookies.getCookie('credentials').pipe(
       mergeMap((credential) => {
+        const access_token = credential ? `Bearer ${credential.access_token}` : '';
         const isPUT = req.method === 'PUT';
         const isPOSTOrPUT = req.method === 'POST' || req.method === 'PUT';
 
@@ -26,7 +27,7 @@ export class RequestInterceptor implements HttpInterceptor {
             ? req.params.append('responseType', 'text')
             : req.params,
           headers: req.headers
-            .set('Authorization', `Bearer ${credential.access_token}`)
+            .set('Authorization', access_token)
             // .set('Content-Type', 'application/json')
             .set(
               'Accept',

@@ -38,7 +38,7 @@ export class ListCategoryComponent implements OnInit {
   editItem(ev: ArticleCategory) {
     console.log(ev);
     this.currentData.setCurrentCategory(ev);
-    this.router.navigateByUrl(`/dashboard/article-category/update/${ev.id}`);
+    this.router.navigateByUrl(`/dashboard/article-category/update/${ev._id}`);
   }
 
   removeItems(ev: any) {

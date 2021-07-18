@@ -96,7 +96,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
 
   updateItem() {
     this.switchButtonState();
-    this.dataService.setItem(this.defaultForm, this.currentArticle.id).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
+    this.dataService.setItem(this.defaultForm, this.currentArticle._id).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
       console.log(res);
     }, complete => {
       this.switchButtonState();

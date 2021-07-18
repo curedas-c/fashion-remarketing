@@ -1,7 +1,7 @@
 import { Promotion } from "../promo/promo.model";
 
 export class Article {
-    id: string;
+    _id: string;
     label: string;
     images: string[];
     description: string;
@@ -11,7 +11,7 @@ export class Article {
     categoryPromotion: Promotion;
 
   constructor(options: {
-    id: string;
+    _id: string;
     label: string;
     images: string[];
     description: string;
@@ -20,7 +20,7 @@ export class Article {
     promotion: Promotion;
     categoryPromotion: Promotion;
   }) {
-    this.id = options.id;
+    this._id = options._id;
     this.label = options.label;
     this.images = options.images;
     this.description = options.description;

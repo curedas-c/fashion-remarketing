@@ -1,5 +1,5 @@
 export class Promotion {
-    id: string;
+    _id: string;
     label: string;
     main_image: string;
     endDate: string;
@@ -9,7 +9,7 @@ export class Promotion {
     articles: string[];
 
   constructor(options: {
-    id: string;
+    _id: string;
     label: string;
     main_image: string;
     endDate: string;
@@ -18,7 +18,7 @@ export class Promotion {
     category: string[];
     articles: string[];
   }) {
-    this.id = options.id;
+    this._id = options._id;
     this.label = options.label;
     this.main_image = options.main_image;
     this.percentage = options.percentage;

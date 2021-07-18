@@ -50,7 +50,7 @@ export class ListArticleComponent implements OnInit {
 
   editItem(ev: Article) {
     this.currentData.setCurrentArticle(ev);
-    this.router.navigateByUrl(`/dashboard/article/update/${ev.id}`, {
+    this.router.navigateByUrl(`/dashboard/article/update/${ev._id}`, {
       state: { ignoreLoadingBar: true },
     });
     /* const url = this.router.serializeUrl(
