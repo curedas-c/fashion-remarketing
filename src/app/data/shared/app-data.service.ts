@@ -12,7 +12,7 @@ import { AppSettings } from '@shared/models/data/appSettings.model';
 })
 export class AppDataService {
   private endpoints = {
-    appData: 'app-data'
+    appData: 'app-settings'
   };
   constructor(private _apiService: ApiService) {}
 
@@ -30,20 +30,9 @@ export class AppDataService {
   }
 
   setItem(item: FormGroup, params?: any): Observable<AppSettings> {
-    let formData = new FormData();
-
-    Object.keys(item.controls).forEach((key) => {
-      const value = item.controls[key].value;
-      if (value.constructor === FileInput) {
-        formData.append(key, value.files[0]);
-      } else {
-        formData.append(key, value);
-      }
-    });
-
     const url = `${this.endpoints.appData}`;
 
-    return this._apiService.post(url, formData, params).pipe(
+    return this._apiService.patch(url, item.value, params).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);
