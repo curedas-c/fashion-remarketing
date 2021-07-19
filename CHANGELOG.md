@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.31.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.30.1...v1.31.0) (2021-07-19)
+
+
+### Features
+
+* make form data handle arrays ([177cd80](https://github.com/curedas-c/fashion-remarketing/commit/177cd80e7ec529744e6ed9c518b89ff64773751f))
+
 ### [1.30.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.30.0...v1.30.1) (2021-07-19)
 
 
