@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '@core/services/api.service';
@@ -15,7 +15,7 @@ import { UpdateArticleComponent } from '../update-article/update-article.compone
   templateUrl: './list-article.component.html',
   styleUrls: ['./list-article.component.scss'],
 })
-export class ListArticleComponent implements OnInit {
+export class ListArticleComponent implements OnInit, OnDestroy {
   dataService = new ArticleService(this.apiService);
   displayedColumns: tableColumn[] = [
     {
@@ -61,7 +61,7 @@ export class ListArticleComponent implements OnInit {
     
   }
 
-  removeItems(ids: string[] | number[]) {
+  removeItems(ids: string[]) {
     this.articleService
       .deleteItem(ids)
       .pipe(takeUntil(this.unsubscribe$))

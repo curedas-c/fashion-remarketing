@@ -1,16 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ArticleCategoryService } from '../shared/services/article-category.service';
 
-import { Subject, Observable } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
-
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { StepperOrientation } from '@angular/cdk/stepper';
+import { Subject } from 'rxjs';
+import { takeUntil, finalize } from 'rxjs/operators';
 
 import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
 
@@ -21,74 +16,48 @@ import { ArticleCategory } from '@shared/models/article-category/articleCategory
 })
 export class UpdateCategoryComponent implements OnInit, OnDestroy {
   currentArticleCategory: ArticleCategory;
-  uuid: string | number;
-  fetchError = false;
-
+  isButtonDisabled = false;
   defaultForm: FormGroup = new FormGroup({});
-  stepperOrientation: Observable<StepperOrientation>;
   private unsubscribe$ = new Subject();
 
   constructor(
-    private currentData: CurrentDataStateService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
+    public dialogRef: MatDialogRef<UpdateCategoryComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dataService: ArticleCategoryService,
-    private fb: FormBuilder, breakpointObserver: BreakpointObserver
+    private fb: FormBuilder
   ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+    this.currentArticleCategory = this.data.currentCategory;
   }
 
   ngOnInit(): void {
-    this.currentData.articleCategory$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => {
-        if (data) {
-          this.currentArticleCategory = data;
-          console.log(data)
-          this.initDefaultForm();
-        } else {
-          this.uuid = this.activatedRoute.snapshot.paramMap.get('uuid');
-          if (this.uuid) {
-            this.getData();
-          } else {
-            this.router.navigateByUrl(`/dashboard/article-category/list`);
-          }
-        }
-      });
+    this.initDefaultForm();
   }
 
   initDefaultForm() {
     this.defaultForm = this.fb.group({
       label: [this.currentArticleCategory.label, [Validators.required]],
-      main_image: ['', [Validators.required]],
+      main_image: [''],
       description: [this.currentArticleCategory.description, [Validators.required]]
     });
   }
 
-  getData() {
+  updateItem() {
+    this.switchButtonState();
     this.dataService
-      .getItem(this.uuid)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => {
-        if (data) {
-          this.currentArticleCategory = data;
-          this.initDefaultForm();
-        }
-        else {
-          this.fetchError = true;
-        }
+      .setItem(this.defaultForm, this.currentArticleCategory._id)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        finalize(() => {
+          this.switchButtonState();
+        })
+      )
+      .subscribe((res) => {
+        console.log(res);
       });
   }
 
-  retryFetch() {
-    this.fetchError = false;
-    this.getData();
-  }
-
-  updateItem() {
-    this.defaultForm.value;
+  switchButtonState() {
+    this.isButtonDisabled = !this.isButtonDisabled;
   }
 
   ngOnDestroy() {

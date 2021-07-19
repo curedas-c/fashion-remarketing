@@ -9,6 +9,8 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { ListCategoryComponent } from './list-category/list-category.component';
 import { ArticleCategoryComponent } from './article-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -17,7 +19,13 @@ import { UpdateCategoryComponent } from './update-category/update-category.compo
     CommonModule,
     ArticleCategoryRoutingModule,
     SharedModule,
-    TableModule
+    TableModule,
+    MatTabsModule,
+    MatDialogModule
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
   ]
 })
 export class ArticleCategoryModule { }

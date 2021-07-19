@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-article-category',
   templateUrl: './article-category.component.html',
   styleUrls: ['./article-category.component.scss']
 })
-export class ArticleCategoryComponent implements OnInit {
+export class ArticleCategoryComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  activeLink: string;
+  private unsubscribe$ = new Subject();
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((event: NavigationEnd) => {
+        this.activeLink = event.urlAfterRedirects;
+      });
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  urlContains(url: string) {
+    return this.activeLink.includes(url);
   }
 
 }

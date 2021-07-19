@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Observable, Subject } from 'rxjs';
 import { finalize, map, takeUntil } from 'rxjs/operators';
 import { ArticleCategoryService } from '../shared/services/article-category.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-category',
@@ -12,6 +13,7 @@ import { ArticleCategoryService } from '../shared/services/article-category.serv
   styleUrls: ['./create-category.component.scss']
 })
 export class CreateCategoryComponent implements OnInit, OnDestroy {
+  @ViewChild('stepper') private stepper: MatStepper;
   categoryCreationForm: FormGroup;
   stepperOrientation: Observable<StepperOrientation>;
   isButtonDisabled = false;
@@ -47,7 +49,9 @@ export class CreateCategoryComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          console.log(res);
+          if (this.stepper.selectedIndex === 0) {
+            this.stepper.next();
+          }
         }
       );
   }

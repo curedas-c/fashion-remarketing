@@ -10,7 +10,6 @@ import { SharedModule } from '@shared/modules/shared.module';
 import { TableModule } from '@shared/modules/table.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
     SharedModule,
     TableModule,
     MatTabsModule,
-    MatDialogModule,
-    MatMenuModule
+    MatDialogModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

@@ -17,7 +17,8 @@ export class ArticleCategoryService {
    * Endpoints
    */
   private endpoints = {
-    articleCategories: 'article-category'
+    articleCategories: 'article-category',
+    delete: 'article-category/delete'
   };
   constructor(private _apiService: ApiService) {}
 
@@ -92,6 +93,15 @@ export class ArticleCategoryService {
     const request = !!uuid ? this._apiService.patch(url, formData, params) : this._apiService.post(url, formData, params);
 
     return request.pipe(
+      map((response: any) => response.data),
+      catchError((error: HttpErrorResponse) => {
+        return observableThrowError(error);
+      })
+    );
+  }
+
+  deleteItem(uuid?: string[] | number []): Observable<any> {
+    return this._apiService.post(`${this.endpoints.delete}`, { uuid }).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);

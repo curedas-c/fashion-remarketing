@@ -1,14 +1,14 @@
-<section class="wrapper flex justify-evenly align-center">
-  <mat-card class="menu-card mat-elevation-z4" routerLink="/dashboard/article-category/create">
-    <mat-card-header>
-      <img mat-card-avatar src="assets/icons/transaction_list.svg" alt="avatar">
-      <mat-card-title>Créer une Catégorie</mat-card-title>
-    </mat-card-header>
-  </mat-card>
-  <mat-card class="menu-card mat-elevation-z4" routerLink="/dashboard/article-category/list">
-    <mat-card-header>
-      <img mat-card-avatar src="assets/icons/edit_property.svg" alt="avatar">
-      <mat-card-title>Editer les Catégories</mat-card-title>
-    </mat-card-header>
-  </mat-card>
-</section>
+<h1>Créez des Catégories</h1>
+<nav mat-tab-nav-bar ngClass="tabs">
+  <a mat-tab-link routerLink="/dashboard/article-category/create" [active]="urlContains('/create')" color="primary">
+    Créer
+  </a>
+  <a mat-tab-link routerLink="/dashboard/article-category/list" [active]="urlContains('/list')" color="primary">
+    Liste
+  </a>
+</nav>
+
+<div class="margin-y">
+  <app-create-category *ngIf="urlContains('/create')"></app-create-category>
+  <app-list-category *ngIf="urlContains('/list')"></app-list-category>
+</div>

@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ArticleCategoryService } from '../shared/services/article-category.service';
-import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ApiService } from '@core/services/api.service';
 
 import { tableColumn } from '@shared/models/table/tableColumn.model';
 import { ArticleCategory } from '@shared/models/article-category/articleCategory.model';
+import { UpdateCategoryComponent } from '../update-category/update-category.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-category',
   templateUrl: './list-category.component.html',
   styleUrls: ['./list-category.component.scss'],
 })
-export class ListCategoryComponent implements OnInit {
+export class ListCategoryComponent implements OnInit, OnDestroy {
   dataService = new ArticleCategoryService(this.apiService);
   displayedColumns: tableColumn[] = [
     {
@@ -21,27 +23,41 @@ export class ListCategoryComponent implements OnInit {
       label: 'Categorie',
     },
     {
-      name: 'main_image',
-      label: 'Image',
-    },
-    {
       name: 'description',
       label: 'Description',
     },
   ];
-  columns = ['select_action', 'edit_action', 'label', 'main_image', 'description']
+  columns = ['select_action', 'edit_action', 'label', 'description'];
+  private unsubscribe$ = new Subject();
 
-  constructor(private apiService: ApiService, private router: Router, private currentData: CurrentDataStateService) {}
+  constructor(public dialog: MatDialog, private apiService: ApiService,  private categoryService: ArticleCategoryService) {}
 
   ngOnInit(): void {}
 
-  editItem(ev: ArticleCategory) {
-    console.log(ev);
-    this.currentData.setCurrentCategory(ev);
-    this.router.navigateByUrl(`/dashboard/article-category/update/${ev._id}`);
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
-  removeItems(ev: any) {
-    console.log(ev);
+  editItem(ev: ArticleCategory) {
+    const dialogRef = this.dialog.open(UpdateCategoryComponent, {
+      width: '800px',
+      data: {currentCategory: ev}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // TODO: refresh table if data has been modified
+      }
+    });;
+  }
+
+  removeItems(ids: string[]) {
+    this.categoryService
+      .deleteItem(ids)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

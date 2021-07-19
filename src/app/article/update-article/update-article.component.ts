@@ -1,15 +1,11 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
-import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ArticleService } from '../shared/article.service';
 import { ArticleCategoryService } from 'src/app/article-category/shared/services/article-category.service';
 
 import { Subject } from 'rxjs';
 import {
-  debounceTime,
-  distinctUntilChanged,
   finalize,
   takeUntil,
 } from 'rxjs/operators';

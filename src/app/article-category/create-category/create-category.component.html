@@ -1,4 +1,4 @@
-<section class="wrapper">
+<section class="">
   <mat-stepper [orientation]="(stepperOrientation | async)!" linear="true" #stepper>
     <mat-step [stepControl]="categoryCreationForm">
       <form [formGroup]="categoryCreationForm">
@@ -31,10 +31,10 @@
   
     <!--Step Two-->
     <mat-step label="Prochaines Etapes">
-      <h2>Vous avez Terminé.</h2>
+      <h2>Catégorie créée.</h2>
       <p>Vous pouvez maintenant ajouter des articles:</p>
       <div class="flex justify-left">
-        <mat-card routerLink='/dashboard/classroom/create' class="menu-card" color="accent">
+        <mat-card routerLink='/dashboard/article' class="menu-card" color="accent">
           <mat-card-header>
             <img mat-card-avatar src="assets/icons/price_tag.svg" alt="avatar">
             <mat-card-title>Ajouter des produits</mat-card-title>
