@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.33.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.32.0...v1.33.0) (2021-07-19)
+
+
+### Features
+
+* **articles:** updates article views and routes to use tabs ([ce982ec](https://github.com/curedas-c/fashion-remarketing/commit/ce982ec42cde557b3700047f3459102dd28e2908))
+
 ## [1.32.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.31.0...v1.32.0) (2021-07-19)
 
 
