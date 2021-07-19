@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.30.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.30.0...v1.30.1) (2021-07-19)
+
+
+### Bug Fixes
+
+* **promotion:** sets various fixes for promotions ([99c5f35](https://github.com/curedas-c/fashion-remarketing/commit/99c5f358fd5b2a869573502a012b072fee5a363b))
+
 ## [1.30.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.29.0...v1.30.0) (2021-07-18)
 
 
