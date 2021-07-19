@@ -8,6 +8,9 @@ import { ListArticleComponent } from './list-article/list-article.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
 import { SharedModule } from '@shared/modules/shared.module';
 import { TableModule } from '@shared/modules/table.module';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -16,7 +19,14 @@ import { TableModule } from '@shared/modules/table.module';
     CommonModule,
     ArticleRoutingModule,
     SharedModule,
-    TableModule
+    TableModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatMenuModule
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
   ]
 })
 export class ArticleModule { }

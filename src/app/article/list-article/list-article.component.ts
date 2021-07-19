@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '@core/services/api.service';
-import { CurrentDataStateService } from '@core/services/current-data-state.service';
 import { ArticleService } from '../shared/article.service';
 
 import { tableColumn } from '@shared/models/table/tableColumn.model';
 import { Article } from '@shared/models/article/article.model';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { UpdateArticleComponent } from '../update-article/update-article.component';
 
 @Component({
   selector: 'app-list-article',
@@ -35,9 +35,8 @@ export class ListArticleComponent implements OnInit {
   private unsubscribe$ = new Subject();
   
   constructor(
+    public dialog: MatDialog,
     private apiService: ApiService,
-    private router: Router,
-    private currentData: CurrentDataStateService,
     private articleService: ArticleService
   ) {}
 
@@ -49,16 +48,17 @@ export class ListArticleComponent implements OnInit {
   }
 
   editItem(ev: Article) {
-    this.currentData.setCurrentArticle(ev);
-    this.router.navigateByUrl(`/dashboard/article/update/${ev._id}`, {
-      state: { ignoreLoadingBar: true },
+    const dialogRef = this.dialog.open(UpdateArticleComponent, {
+      width: '800px',
+      data: {currentArticle: ev}
     });
-    /* const url = this.router.serializeUrl(
-      this.router.createUrlTree([`/dashboard/school-year/update/${ev.id}`])
-    );
-  
-    // opens in a new window
-    window.open(`/#/${url}`, '_blank'); */
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // TODO: refresh table if data has been modified
+      }
+    });
+    
   }
 
   removeItems(ids: string[] | number[]) {

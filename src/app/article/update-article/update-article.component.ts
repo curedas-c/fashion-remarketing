@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,22 +7,25 @@ import { ArticleService } from '../shared/article.service';
 import { ArticleCategoryService } from 'src/app/article-category/shared/services/article-category.service';
 
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  takeUntil,
+} from 'rxjs/operators';
 
 import { Article } from '@shared/models/article/article.model';
 import { addControl, removeControls } from '@shared/utils/formGroupModifier';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-update-article',
   templateUrl: './update-article.component.html',
-  styleUrls: ['./update-article.component.scss']
+  styleUrls: ['./update-article.component.scss'],
 })
 export class UpdateArticleComponent implements OnInit, OnDestroy {
-
   defaultForm: FormGroup = new FormGroup({});
   currentArticle: Article;
-  uuid: string | number;
-  fetchError = false;
 
   previewVisible = false;
   isButtonDisabled = false;
@@ -30,30 +33,17 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
 
   constructor(
+    public dialogRef: MatDialogRef<UpdateArticleComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private currentData: CurrentDataStateService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private dataService: ArticleService,
     private categoryService: ArticleCategoryService
-  ) { }
+  ) {
+    this.currentArticle = this.data.currentArticle;
+  }
 
   ngOnInit(): void {
-    this.currentData.article$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => {
-        if (data) {
-          this.currentArticle = data;
-          this.initDefaultForm();
-        } else {
-          this.uuid = this.activatedRoute.snapshot.paramMap.get('uuid');
-          if (this.uuid) {
-            this.getData();
-          } else {
-            this.router.navigateByUrl(`/dashboard/article/list`);
-          }
-        }
-      });
+    this.initDefaultForm();
   }
 
   ngOnDestroy(): void {
@@ -66,41 +56,47 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
       label: [this.currentArticle.label, [Validators.required]],
       description: [this.currentArticle.description, [Validators.required]],
       category: [this.currentArticle.category, [Validators.required]],
-      price: [this.currentArticle.price, [Validators.required]]
+      price: [this.currentArticle.price, [Validators.required]],
     });
   }
 
-  getData() {
-    this.dataService
-      .getItem(this.uuid)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => {
-        if (data) {
-          this.currentArticle = data;
-          this.initDefaultForm();
-        }
-      }, error => {
-        if(error.status === 404) {
-          this.router.navigateByUrl(`/dashboard/article/list`);
-        }
-        this.fetchError = true;
-      }, () => {
-        this.switchButtonState();
-      });
-  }
+  // getData() {
+  //   this.dataService
+  //     .getItem(this.currentArticle._id)
+  //     .pipe(takeUntil(this.unsubscribe$))
+  //     .subscribe((data) => {
+  //       if (data) {
+  //         this.currentArticle = data;
+  //         this.initDefaultForm();
+  //       }
+  //     }, error => {
+  //       if(error.status === 404) {
+  //         this.router.navigateByUrl(`/dashboard/article/list`);
+  //       }
+  //       this.fetchError = true;
+  //     }, () => {
+  //       this.switchButtonState();
+  //     });
+  // }
 
-  retryFetch() {
-    this.fetchError = false;
-    this.getData();
-  }
+  // retryFetch() {
+  //   this.fetchError = false;
+  //   this.getData();
+  // }
 
   updateItem() {
     this.switchButtonState();
-    this.dataService.setItem(this.defaultForm, this.currentArticle._id).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
-      console.log(res);
-    }, complete => {
-      this.switchButtonState();
-    });
+    this.dataService
+      .setItem(this.defaultForm, this.currentArticle._id)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        finalize(() => {
+          this.switchButtonState();
+        })
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   switchPreviewVisibility() {
@@ -122,5 +118,4 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   get haveImageField() {
     return this.defaultForm.controls.images;
   }
-
 }

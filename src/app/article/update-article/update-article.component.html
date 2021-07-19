@@ -1,8 +1,8 @@
-<mat-card *ngIf="!previewVisible && this.currentArticle" [@inOutAnimation]>
+<mat-card *ngIf="!previewVisible && this.currentArticle" [@inOutAnimation] class="mat-elevation-z0">
     <mat-card-content>
       <form [formGroup]="defaultForm">
   
-        <div class="flex justify-between margin-y">
+        <div class="flex justify-between align-end margin-y">
           <mat-form-field class="quart full-width-m">
             <mat-label>Titre de l'article</mat-label>
             <input matInput formControlName="label" required />
@@ -54,7 +54,7 @@
   
         <div class="margin-y flex justify-left">
           <button type="button" mat-button mat-flat-button color="primary"
-            [disabled]="!defaultForm.valid || isButtonDisabled" (click)="updateItem()">Créer l'article</button>
+            [disabled]="!defaultForm.valid || isButtonDisabled" (click)="updateItem()">Modifier</button>
           <button type="button" mat-button mat-stroked-button color="primary" [disabled]="!defaultForm.valid"
             (click)="switchPreviewVisibility()">Aperçu</button>
         </div>
@@ -75,9 +75,9 @@
     </mat-card-content>
   </mat-card>
 
-  <section *ngIf="fetchError" class="requestError flex column justify-center align-center text-center">
+  <!-- <section *ngIf="fetchError" class="requestError flex column justify-center align-center text-center">
     <img src="assets/icons/cloud_cross.svg" alt="error" width="60%" />
     <h2 class="text">Ooupps! <br> Une erreur s'est produite</h2>
     <p><button mat-raised-button color="accent" (click)="getData()">Réessayer <mat-icon matSuffix>refresh</mat-icon></button></p>
-  </section>
+  </section> -->
   
