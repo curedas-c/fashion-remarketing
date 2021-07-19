@@ -55,10 +55,14 @@ export class ArticleService {
   setItem(item: FormGroup, uuid?: string | number, params?: any): Observable<Article> {
     let formData = new FormData();
 
-    Object.keys(item.controls).forEach(key => {
+    Object.keys(item.controls).forEach((key) => {
       const value = item.controls[key].value;
       if (value.constructor === FileInput) {
         formData.append(key, value.files[0]);
+      } else if (value.constructor === Array) {
+        value.forEach((item) => {
+          formData.append(key, item);
+        });
       } else {
         formData.append(key, value);
       }
