@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.34.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.33.0...v1.34.0) (2021-07-19)
+
+
+### Features
+
+* **categories:** updates category views to use tabs ([06c6126](https://github.com/curedas-c/fashion-remarketing/commit/06c61266cd180d41b46611b4cba801d9b88d173e))
+
 ## [1.33.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.32.0...v1.33.0) (2021-07-19)
 
 
