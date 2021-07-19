@@ -182,7 +182,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onRemove() {
-    const selectedIDs = this.selection.selected.map(selection => selection.id);
+    const selectedIDs = this.selection.selected.map(selection => selection._id);
     this.remove.emit(selectedIDs);
   }
 

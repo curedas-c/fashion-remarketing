@@ -15,7 +15,8 @@ import { Article } from '@shared/models/article/article.model';
 export class ArticleService {
 
   private endpoints = {
-    article: 'article'
+    article: 'article',
+    articleDelete: 'article/delete'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -81,7 +82,7 @@ export class ArticleService {
   }
 
   deleteItem(uuid?: string[] | number []): Observable<any> {
-    return this._apiService.delete(`${this.endpoints.article}`, uuid).pipe(
+    return this._apiService.post(`${this.endpoints.articleDelete}`, { uuid }).pipe(
       map((response: any) => response.data),
       catchError((error: HttpErrorResponse) => {
         return observableThrowError(error);
