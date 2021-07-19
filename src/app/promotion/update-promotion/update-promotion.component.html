@@ -1,17 +1,17 @@
-<mat-stepper orientation="vertical" linear="true" #stepper>
+<mat-stepper orientation="vertical" linear="true" class="mat-elevation-z0" #stepper>
     <mat-step [stepControl]="defaultForm">
       <form [formGroup]="defaultForm">
         <ng-template matStepLabel>Modifiez la promotion</ng-template>
         <div class="flex justify-left margin-y">
           <mat-form-field class="tiers">
-            <mat-label>Description</mat-label>
+            <mat-label>Nom de la promotion</mat-label>
             <input matInput formControlName="label" placeholder="Promo sur les Mocassins Homme" required />
           </mat-form-field>
         </div>
-        <div class="flex justify-left margin-y">
+        <div class="flex justify-left align-end margin-y">
           <mat-form-field class="quart full-width-m">
             <mat-label>Date de fin</mat-label>
-            <input matInput formControlName="endDate" [matDatepicker]="picker" required>
+            <input matInput formControlName="endDate" [matDatepicker]="picker" [min]="minDate" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -37,17 +37,17 @@
   
   
     <!--Step Two-->
-    <mat-step [stepControl]="itemsForm" label="Eléments concernés">
+    <mat-step [stepControl]="itemsForm" label="Type de promotion">
   
       <form [formGroup]="itemsForm">
-        <div class="flex justify-left margin-y">
-          <mat-form-field class="quart full-width-m">
+        <div class="flex justify-left align-end margin-y">
+          <!-- <mat-form-field class="quart full-width-m">
             <mat-label>Cette promotion vise des:</mat-label>
             <mat-select formControlName="target">
               <mat-option value="category">Catégories d'article</mat-option>
               <mat-option value="article">Articles</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
   
           <mat-form-field class="quart full-width-m">
             <mat-label>Type de promotion</mat-label>
@@ -68,14 +68,14 @@
             </mat-form-field>
         </div>
   
-        <div [hidden]="!itemsForm.controls.discountOn.value" class="margin-y">
+        <!-- <div [hidden]="!itemsForm.controls.discountOn.value" class="margin-y">
           <mat-card-content>
             <mat-chip-list aria-label="Sélectionnez les éléments">
               <mat-chip *ngFor="let target of targetList$ | async" [ngClass]="isInList(target) ? 'chip-primary' : ''" (click)="setItem(target)">{{ target.label }}
               </mat-chip>
             </mat-chip-list>
           </mat-card-content>
-        </div>
+        </div> -->
   
         <div class="flex justify-left margin-y">
           <button mat-button mat-flat-button matStepperNext color="primary" (click)="updatePromotion()"

@@ -13,6 +13,7 @@ import { TableComponent } from '@shared/components/table/table.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DateTransPipe } from '../pipes/date.pipe';
 
 const IMPORTS = [
   MatIconModule,
@@ -28,7 +29,7 @@ const IMPORTS = [
   MatCheckboxModule
 ];
 @NgModule({
-  declarations: [TableComponent],
+  declarations: [TableComponent, DateTransPipe],
   imports: [CommonModule, ...IMPORTS],
   exports: [...IMPORTS, TableComponent],
   providers: [],

@@ -55,6 +55,10 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
   box-shadow: 0 0.25rem 0.5rem 0 rgb(44 51 73 / 10%)!important;
 }
 
+.mat-elevation-z0 {
+  box-shadow: none!important;
+}
+
 mat-chip.mat-chip.mat-standard-chip {
   &.chip-primary {
       background-color: $primary;

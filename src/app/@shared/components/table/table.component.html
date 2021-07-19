@@ -55,7 +55,7 @@
         <!--Columns-->
         <ng-container *ngFor="let property of displayedColumns;" [matColumnDef]="property.name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ property?.label }}</th>
-          <td mat-cell *matCellDef="let element"> {{element[property?.name] || '-'}} </td>
+          <td mat-cell *matCellDef="let element"> {{element[property?.name] || '-' | dateTrans}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>

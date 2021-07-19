@@ -10,7 +10,7 @@ import { removeControls, addControl } from '@shared/utils/formGroupModifier';
 import { PromotionService } from '../shared/services/promotion.service';
 import { ArticleCategoryService } from '../../article-category/shared/services/article-category.service';
 import { ArticleService } from '../../article/shared/article.service';
-import { Promotion } from '../../@shared/models/promo/promo.model';
+import { Promotion } from '@shared/models/promo/promo.model';
 
 @Component({
   selector: 'app-update-promotion',
@@ -26,6 +26,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
   isButtonDisabled = false;
   targetList$: Observable<any[]>;
   targetList: any[] = [];
+  minDate = new Date();
   private unsubscribe$ = new Subject();
 
   constructor(
@@ -37,8 +38,8 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     private articleService: ArticleService
   ) {
     this.currentPromotion = this.data.currentPromotion;
-    const items = this.currentPromotion.category ? this.currentPromotion.category : this.currentPromotion.articles;
-    this.targetList = items;
+    // const items = this.currentPromotion.category ? this.currentPromotion.category : this.currentPromotion.articles;
+    // this.targetList = items;
   }
 
   ngOnInit(): void {
@@ -72,19 +73,19 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
   }
 
   listenToControlsChanges() {
-    this.itemsForm.controls.target.valueChanges
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((value) => {
-        if (value === 'article') {
-          this.itemsForm = removeControls(this.itemsForm, ['category']);
-          this.itemsForm = addControl(this.itemsForm, 'articles');
-          this.targetList$ = this.articleService.getAllItems();
-        } else if (value === 'category') {
-          this.itemsForm = removeControls(this.itemsForm, ['articles']);
-          this.itemsForm = addControl(this.itemsForm, 'category');
-          this.targetList$ = this.categoryService.getAllItems();
-        }
-      });
+    // this.itemsForm.controls.target.valueChanges
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe((value) => {
+    //     if (value === 'article') {
+    //       this.itemsForm = removeControls(this.itemsForm, ['category']);
+    //       this.itemsForm = addControl(this.itemsForm, 'articles');
+    //       this.targetList$ = this.articleService.getAllItems();
+    //     } else if (value === 'category') {
+    //       this.itemsForm = removeControls(this.itemsForm, ['articles']);
+    //       this.itemsForm = addControl(this.itemsForm, 'category');
+    //       this.targetList$ = this.categoryService.getAllItems();
+    //     }
+    //   });
 
     this.itemsForm.controls.discountOn.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
@@ -114,7 +115,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
         }
       );
   }

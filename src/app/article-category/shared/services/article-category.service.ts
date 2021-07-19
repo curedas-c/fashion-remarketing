@@ -26,7 +26,6 @@ export class ArticleCategoryService {
       .get(`${this.endpoints.articleCategories}`, params)
       .pipe(
         map((response: any) => {
-          console.log(response);
           const mapped: ArticleCategory[] = response.items.map((res) => {
             return new ArticleCategory(res);
           });

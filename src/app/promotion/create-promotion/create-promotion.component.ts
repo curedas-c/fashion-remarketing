@@ -21,6 +21,7 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
   isButtonDisabled = false;
   targetList$: Observable<any[]>;
   targetList: any[] = [];
+  minDate = new Date();
   private unsubscribe$ = new Subject();
   constructor(
     private fb: FormBuilder,
@@ -88,13 +89,13 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       ...this.itemsForm.controls,
       ...this.creationForm.controls,
     });
-    console.log(formGroups.value)
     this.promoService
       .setItem(formGroups)
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          console.log(res);
+          this.creationForm.reset();
+          this.itemsForm.reset();
         }
       );
   }
@@ -110,9 +111,9 @@ export class CreatePromotionComponent implements OnInit, OnDestroy {
       this.targetList = [...this.targetList, item];
     }
     if (this.itemsForm.controls.target.value === 'article') {
-      this.itemsForm.controls.articles.patchValue(this.targetList);
+      this.itemsForm.controls.articles.patchValue(this.targetList.map(item => item._id));
     } else {
-      this.itemsForm.controls.category.patchValue(this.targetList);
+      this.itemsForm.controls.category.patchValue(this.targetList.map(item => item._id));
     }
   }
 
