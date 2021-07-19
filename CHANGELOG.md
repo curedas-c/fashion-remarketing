@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.32.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.31.0...v1.32.0) (2021-07-19)
+
+
+### Features
+
+* sets all delete request to post ([559c5f3](https://github.com/curedas-c/fashion-remarketing/commit/559c5f3d6020b77721d9425ec7d0c82c42675156))
+
 ## [1.31.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.30.1...v1.31.0) (2021-07-19)
 
 
