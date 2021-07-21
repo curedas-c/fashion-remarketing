@@ -39,6 +39,10 @@ const routes: Routes = [
         loadChildren: () => import('./article-category/article-category.module').then(m => m.ArticleCategoryModule)
       },
       {
+        path: 'order',
+        loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+      },
+      {
         path: 'error',
         component: ErrorPageComponent
       },

@@ -1,0 +1,16 @@
+:host {
+    .product {
+        padding: .4rem .8rem;
+        margin-bottom: 1rem;
+    }
+    .products {
+        @media (min-width: 800px) {
+            display: flex;
+            justify-content: flex-start;
+
+            article {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

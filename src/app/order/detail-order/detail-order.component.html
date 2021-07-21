@@ -1,0 +1,42 @@
+<section class="margin-y">
+  <h3 class="t-medium">Date de commande: {{ this.currentOrder.createdAt || '-' | dateTrans }}</h3>
+  <h3 class="t-medium">Total commande: {{ this.currentOrder.total || '-' }}</h3>
+</section>
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel class="mat-elevation-z0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>perm_identity</mat-icon>
+        Client
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <article>
+      <h4><span class="t-medium">Nom:</span> {{ this.currentOrder.clientName || '-' }}</h4>
+      <h4><span class="t-medium">Contact:</span> {{ this.currentOrder.clientContact || '-' }}</h4>
+      <h4><span class="t-medium">Localisation:</span> {{ this.currentOrder.clientLocalization || '-' }}</h4>
+    </article>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel class="mat-elevation-z0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="material-icons-outlined">local_mall</mat-icon>
+        Produits
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="products">
+      <article *ngFor="let order of currentOrder?.products" class="mat-elevation-z4 product">
+        <h4><span class="t-medium">Article :</span> {{ order.product.label || '-' }}</h4>
+        <h4><span class="t-medium">Prix à l'unité :</span> {{ order.product.price || '-' }}</h4>
+        <h4><span class="t-medium">Quantité :</span> {{ order.quantity || '-' }}</h4>
+      </article>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

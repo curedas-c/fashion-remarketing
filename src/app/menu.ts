@@ -44,5 +44,12 @@ export const MAIN_MENU: menu[] = [
       title: "Catégories d'Articles",
       icon: 'category'
     }
+  },
+  {
+    path: '/dashboard/order',
+    menu: {
+      title: "Commandes",
+      icon: 'receipt_long'
+    }
   }
 ];

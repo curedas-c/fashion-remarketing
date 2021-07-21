@@ -59,6 +59,13 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
   box-shadow: none!important;
 }
 
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  align-items: center;
+  .mat-icon {
+    margin-right: .26rem;
+  }
+}
+
 mat-chip.mat-chip.mat-standard-chip {
   &.chip-primary {
       background-color: $primary;
