@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.35.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.34.0...v1.35.0) (2021-07-21)
+
+
+### Features
+
+* **home:** implements home page ([f63a052](https://github.com/curedas-c/fashion-remarketing/commit/f63a0525e2b00477dad1ff41f6bfa168dbe5f670))
+
 ## [1.34.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.33.0...v1.34.0) (2021-07-19)
 
 
