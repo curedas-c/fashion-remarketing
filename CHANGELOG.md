@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.36.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.35.0...v1.36.0) (2021-07-21)
+
+
+### Features
+
+* **orders:** adds order listing ([bb2903d](https://github.com/curedas-c/fashion-remarketing/commit/bb2903d51117ecec69e33bfb5f0cde2af0c9ddea))
+
 ## [1.35.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.34.0...v1.35.0) (2021-07-21)
 
 
