@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.37.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.36.0...v1.37.0) (2021-07-21)
+
+
+### Features
+
+* make table refresh after an update ([8bbf507](https://github.com/curedas-c/fashion-remarketing/commit/8bbf507974930570c5e00241663d004556feeffe))
+
 ## [1.36.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.35.0...v1.36.0) (2021-07-21)
 
 
