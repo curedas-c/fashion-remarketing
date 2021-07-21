@@ -280,7 +280,7 @@ export class UpdateNotificationComponent implements OnInit, OnDestroy, AfterView
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          console.log(res);
+          this.dialogRef.close(true);
         }
       );
   }

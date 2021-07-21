@@ -16,7 +16,6 @@ export class DetailOrderComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.currentOrder = this.data.currentOrder;
-    console.log(this.currentOrder)
   }
 
   ngOnInit(): void {}

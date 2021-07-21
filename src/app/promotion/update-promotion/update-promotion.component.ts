@@ -115,7 +115,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          // console.log(res);
+          this.dialogRef.close(true);
         }
       );
   }

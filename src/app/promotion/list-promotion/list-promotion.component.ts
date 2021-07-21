@@ -20,6 +20,7 @@ import { UpdatePromotionComponent } from '../update-promotion/update-promotion.c
 export class ListPromotionComponent implements OnInit {
 
   dataService = new PromotionService(this.apiService);
+  params = {};
   displayedColumns: tableColumn[] = [
     {
       name: 'label',
@@ -66,7 +67,7 @@ export class ListPromotionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // refresh table if data has been modified
+        this.params = {...this.params};
       }
     });
   }
@@ -76,7 +77,7 @@ export class ListPromotionComponent implements OnInit {
       .deleteItem(ids)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res) => {
-        console.log(res);
+        this.params = {...this.params};
       });
   }
 

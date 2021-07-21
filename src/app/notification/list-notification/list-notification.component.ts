@@ -14,6 +14,7 @@ import { UpdateNotificationComponent } from '../update-notification/update-notif
 })
 export class ListNotificationComponent implements OnInit, OnDestroy {
   dataService = new NotificationService(this.apiService);
+  params = {};
   displayedColumns: tableColumn[] = [
     {
       name: 'message_title',
@@ -64,7 +65,7 @@ export class ListNotificationComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // refresh table if data has been modified
+        this.params = {...this.params};
       }
     });
   }
@@ -74,7 +75,7 @@ export class ListNotificationComponent implements OnInit, OnDestroy {
       .deleteItem(ids)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res) => {
-        console.log(res);
+        this.params = {...this.params};
       });
   }
 

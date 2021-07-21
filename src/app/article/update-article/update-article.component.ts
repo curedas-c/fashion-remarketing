@@ -91,7 +91,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((res) => {
-        console.log(res);
+        this.dialogRef.close(true);
       });
   }
 

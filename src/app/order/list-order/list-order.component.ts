@@ -15,6 +15,7 @@ import { OrderService } from '../shared/order.service';
 export class ListOrderComponent implements OnInit, OnDestroy {
 
   dataService = new OrderService(this.apiService);
+  params = {};
   displayedColumns: tableColumn[] = [
     {
       name: 'createdAt',
@@ -60,7 +61,7 @@ export class ListOrderComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // refresh table if data has been modified
+        this.params = {...this.params};
       }
     });
   }

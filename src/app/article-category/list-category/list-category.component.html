@@ -1,3 +1,3 @@
 <app-table [title]="'Catégories'" [dataService]="dataService" [displayedColumns]="displayedColumns" [columns]="columns"
-  [selectable]="true" [editable]="true" (edit)="editItem($event)" (remove)="removeItems($event)">
+  [selectable]="true" [requestParams]="params" [editable]="true" (edit)="editItem($event)" (remove)="removeItems($event)">
 </app-table>

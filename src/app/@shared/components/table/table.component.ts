@@ -5,7 +5,9 @@ import {
   Component,
   ElementRef,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
@@ -13,7 +15,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { tableColumn } from '../../models/table/tableColumn.model';
+import { tableColumn } from '@shared/models/table/tableColumn.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -28,16 +30,14 @@ import {
   takeUntil,
   tap,
 } from 'rxjs/operators';
-import { inOutAnimation } from '@shared/animations/inOutAnimation';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  animations: [inOutAnimation],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() title: string;
   @Input() displayedColumns: tableColumn[] = [];
   @Input() columns: string[] = [];
@@ -45,11 +45,12 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() selectable = false;
   @Input() editable = false;
-  requestParams: any = {};
+  @Input() requestParams: any = {};
   dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   selection = new SelectionModel<any>(true, []);
 
   resultsLength = 0;
+  pageLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
 
@@ -65,7 +66,13 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getServerData();
-}
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.requestParams.firstChange) {
+      this.getServerData();
+    }
+  }
 
   ngAfterViewInit() {
     // server-side search
@@ -109,6 +116,7 @@ export class TableComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.total_count;
+          this.pageLength = data.items.length;
 
           return data.items;
         }),
@@ -119,7 +127,7 @@ export class TableComponent implements OnInit, AfterViewInit {
           return observableOf([]);
         })
       )
-      .subscribe((data: any[]) => {
+      .subscribe((data) => {
         this.dataSource = new MatTableDataSource<any>(data);
         this.cdRef.detectChanges();
       });

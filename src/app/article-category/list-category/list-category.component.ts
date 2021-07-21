@@ -17,6 +17,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ListCategoryComponent implements OnInit, OnDestroy {
   dataService = new ArticleCategoryService(this.apiService);
+  params = {};
   displayedColumns: tableColumn[] = [
     {
       name: 'label',
@@ -47,7 +48,7 @@ export class ListCategoryComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // TODO: refresh table if data has been modified
+        this.params = {...this.params};
       }
     });;
   }
@@ -57,7 +58,7 @@ export class ListCategoryComponent implements OnInit, OnDestroy {
       .deleteItem(ids)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res) => {
-        console.log(res);
+        this.params = {...this.params};
       });
   }
 }
