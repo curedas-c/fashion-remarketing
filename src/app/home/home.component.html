@@ -1,14 +1,72 @@
-<!-- <section class="wrapper flex justify-evenly align-center">
-    <mat-card class="menu-card mat-elevation-z4" routerLink="/dashboard/article/create">
-      <mat-card-header>
-        <img mat-card-avatar src="assets/icons/transaction_list.svg" alt="avatar">
-        <mat-card-title>Créer un Article</mat-card-title>
-      </mat-card-header>
-    </mat-card>
+<div class="margin-y">
+  <h3>Statistiques</h3>
+  <section class="flex justify-left align-center">
     <mat-card class="menu-card mat-elevation-z4" routerLink="/dashboard/article/list">
       <mat-card-header>
-        <img mat-card-avatar src="assets/icons/edit_property.svg" alt="avatar">
-        <mat-card-title>Editer les Articles</mat-card-title>
+        <img mat-card-avatar src="assets/icons/bar_chart.svg" alt="avatar">
+        <mat-card-title>Articles: {{ articleCount || 0 }}</mat-card-title>
       </mat-card-header>
     </mat-card>
-  </section> -->
+    <mat-card class="menu-card mat-elevation-z4" routerLink="/dashboard/orders">
+      <mat-card-header>
+        <img mat-card-avatar src="assets/icons/shopping_bag.svg" alt="avatar">
+        <mat-card-title>Commandes: {{ articleCount || 0 }}</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+  </section>
+</div>
+
+<div class="margin-y">
+  <h3>Gérez votre boutique</h3>
+  <section class="section flex justify-left align-stretch">
+    <mat-card class="action-card mat-elevation-z4" routerLink="/dashboard/article">
+      <mat-card-header>
+        <img src="assets/icons/price_tag.svg" alt="avatar">
+      </mat-card-header>
+      <mat-card-content>
+        Créez des produits
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="action-card mat-elevation-z4" routerLink="/dashboard/article-category">
+      <mat-card-header>
+        <img src="assets/icons/add_shopping_cart.svg" alt="avatar">
+      </mat-card-header>
+      <mat-card-content>
+        <p>organisez vos produits en catégories</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="action-card mat-elevation-z4" routerLink="/dashboard/data/contacts-in-app">
+      <mat-card-header>
+        <img src="assets/icons/home_address.svg" alt="avatar">
+      </mat-card-header>
+      <mat-card-content>
+        Modifiez vos coordonnées
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>
+
+<div class="margin-y">
+  <h3>Fidélisez votre clientèle</h3>
+  <section class="section flex justify-left align-stretch">
+    <mat-card class="action-card mat-elevation-z4" routerLink="/dashboard/notification">
+      <mat-card-header>
+        <img src="assets/icons/sms.svg" alt="avatar">
+      </mat-card-header>
+      <mat-card-content>
+        Envoyez des Notification
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="action-card mat-elevation-z4" routerLink="/dashboard/promotion">
+      <mat-card-header>
+        <img src="assets/icons/commercial.svg" alt="avatar">
+      </mat-card-header>
+      <mat-card-content>
+        Créez des promotions attractives
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

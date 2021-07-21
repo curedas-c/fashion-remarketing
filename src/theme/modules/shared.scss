@@ -1,6 +1,6 @@
 // utilities
 .flex {
-  display: flex!important;
+  display: flex !important;
   flex-wrap: wrap;
 
   &.justify-center {
@@ -28,7 +28,7 @@
   }
 
   &.justify-right {
-    justify-content: flex-end!important;
+    justify-content: flex-end;
 
     &>* {
       margin-left: 1.5rem;
@@ -45,6 +45,10 @@
 
   &.align-end {
     align-items: flex-end;
+  }
+
+  &.align-stretch {
+    align-items: stretch;
   }
 
   &.no-wrap {
@@ -127,6 +131,11 @@
   background-color: $popup_danger;
 }
 
+// text
+.t-medium {
+  color: $medium;
+}
+
 // Components
 
 .wrapper {
@@ -151,7 +160,42 @@
   }
 
   &:hover {
-    background-color: $primary_shade;
+    box-shadow: 0 0.45rem 0.7rem 0 $primary_shade !important;
+  }
+}
+
+.action-card {
+  cursor: pointer;
+  color: $medium;
+  padding: 0 !important;
+  margin-bottom: 1rem;
+
+  .mat-card-header {
+    img {
+      width: 6rem;
+    }
+    background-color: beige;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mat-card-header-text {
+    display: none;
+  }
+
+  .mat-card-content {
+    text-align: center;
+    padding: .8rem !important;
+    @media(min-width: 800px) {
+      max-width: 12rem;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0.45rem 0.7rem 0 $primary_shade !important;
   }
 }
 

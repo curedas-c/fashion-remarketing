@@ -16,7 +16,8 @@ export class ArticleService {
 
   private endpoints = {
     article: 'article',
-    articleDelete: 'article/delete'
+    articleDelete: 'article/delete',
+    stats: 'article/stats'
   };
   constructor(private _apiService: ApiService) { }
 
@@ -33,6 +34,19 @@ export class ArticleService {
             items: mapped,
             total_count: response.total_count,
           };
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return observableThrowError(error);
+        })
+      );
+  }
+
+  getStats(params?: any): Observable<any> {
+    return this._apiService
+      .get(`${this.endpoints.stats}`, params)
+      .pipe(
+        map((response: any) => {
+          return response;
         }),
         catchError((error: HttpErrorResponse) => {
           return observableThrowError(error);
