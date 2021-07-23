@@ -76,7 +76,7 @@ export class ArticleService {
         formData.append(key, value.files[0]);
       } else if (value.constructor === Array) {
         value.forEach((item) => {
-          formData.append(key, item);
+          formData.append(key + '[]', item);
         });
       } else {
         formData.append(key, value);
