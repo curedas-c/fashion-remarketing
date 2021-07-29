@@ -77,7 +77,7 @@
           </mat-form-field>
 
           <mat-form-field *ngIf="scheduleForm.controls.schedule_time || scheduleForm.controls.schedule_startDate"
-            appearance="outline" [matMenuTriggerFor]="menu">
+            appearance="outline">
             <mat-label>{{ schedulePlaceholder }}</mat-label>
             <input formControlName="schedule_time" type="time" matInput />
           </mat-form-field>

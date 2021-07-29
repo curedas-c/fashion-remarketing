@@ -91,6 +91,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   initScheduleForm() {
     this.scheduleForm = this.fb.group({
       schedule_type: ['', [Validators.required]],
+      schedule_time: ['', [Validators.required]],
     });
   }
 
@@ -126,11 +127,11 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   setScheduleDate(date: any) {
     this.scheduleForm = removeControls(
       this.scheduleForm,
-      ['schedule_type'],
+      ['schedule_type', 'schedule_time'],
       true
     );
     this.scheduleForm = addControl(this.scheduleForm, 'schedule_date');
-    this.scheduleForm = addControl(this.scheduleForm, 'schedule_time');
+    // this.scheduleForm = addControl(this.scheduleForm, 'schedule_time');
     this.scheduleForm.controls.schedule_date.patchValue(date);
     this.setScheduleType(ScheduleTypes.SCHEDULED);
   }
@@ -151,7 +152,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
           case ScheduleTypes.EVERYDAY:
             this.scheduleForm = removeControls(
               this.scheduleForm,
-              ['schedule_type'],
+              ['schedule_type', 'schedule_time'],
               true
             );
             this.scheduleForm = addControl(
@@ -162,7 +163,27 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
               this.scheduleForm,
               'schedule_endDate'
             );
+            this.scheduleForm = addControl(
+              this.scheduleForm,
+              'schedule_time'
+            );
             break;
+
+            case ScheduleTypes.SCHEDULED:
+              this.scheduleForm = removeControls(
+                this.scheduleForm,
+                ['schedule_type', 'schedule_time', 'schedule_date'],
+                true
+              );
+              this.scheduleForm = addControl(
+                this.scheduleForm,
+                'schedule_date'
+              );
+              this.scheduleForm = addControl(
+                this.scheduleForm,
+                'schedule_time'
+              );
+              break;
 
           default:
             break;
@@ -193,7 +214,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
         distinctUntilChanged(),
         tap(() => {
           const value = this.input.nativeElement.value;
-          if (value.length > 0 && value.length < 3) {
+          if (value.length < 3) {
             return;
           } else {
             this.searchElement(value);
@@ -239,6 +260,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
     const DATA = this.fb.group({
       ...this.scheduleForm.controls,
       ...this.messageForm.controls,
+      ...this.targetForm.controls
     });
     this.notificationService
       .setItem(DATA)
@@ -255,8 +277,8 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   }
 
   setItem(item: any) {
-    let link = `${this.message_link}/${item.id}`;
-    this.targetForm.controls.target_id.patchValue(item.id);
+    let link = `${this.message_link}/${item._id}`;
+    this.targetForm.controls.target_id.patchValue(item._id);
     this.targetForm.controls.message_link.patchValue(link);
   }
 
