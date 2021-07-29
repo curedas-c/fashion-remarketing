@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.37.2](https://github.com/curedas-c/fashion-remarketing/compare/v1.37.1...v1.37.2) (2021-07-29)
+
+
+### Bug Fixes
+
+* **notification:** fix missing properties on notifications ([01d80d0](https://github.com/curedas-c/fashion-remarketing/commit/01d80d047e4d96ce20bb41976a81627331bfd23f))
+
 ### [1.37.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.37.0...v1.37.1) (2021-07-23)
 
 
