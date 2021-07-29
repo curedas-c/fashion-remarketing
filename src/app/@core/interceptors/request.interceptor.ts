@@ -6,12 +6,14 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { mergeMap, catchError } from 'rxjs/operators';
+import { mergeMap, tap, catchError } from 'rxjs/operators';
 import { CookiesService } from '../services/cookies.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition } from '@angular/material/snack-bar';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor(private cookies: CookiesService) {}
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  constructor(private cookies: CookiesService, private snackBar: MatSnackBar) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -37,6 +39,16 @@ export class RequestInterceptor implements HttpInterceptor {
         });
 
         return next.handle(modifiedReq).pipe(
+          tap((data:any) => {
+            const body = data?.body;
+            if (body?.message) {
+              this.snackBar.open(body.message || 'Action éffectuée !', 'Fermer', {
+                duration: 4000,
+                horizontalPosition: this.horizontalPosition,
+                panelClass: 'popup-success'
+              });
+            }
+          }),
           catchError((error) => {
             return throwError(error);
           })
