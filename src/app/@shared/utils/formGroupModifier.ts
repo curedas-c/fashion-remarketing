@@ -32,10 +32,10 @@ export const removeControls = (
 export const addControl = (
   form: FormGroup,
   controlName: string,
+  defaultValue = null,
   validators: ValidatorFn | ValidatorFn[] | AbstractControlOptions = [
     Validators.required,
-  ],
-  defaultValue = null
+  ]
 ): FormGroup => {
   if (!form.controls.controlName) {
     form.addControl(controlName, new FormControl(defaultValue, validators));

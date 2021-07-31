@@ -12,6 +12,7 @@ export class Notification {
     link: string;
     target_id: string;
     target: string;
+    isActive: boolean;
 
   constructor(options: {
     _id: string;
@@ -27,6 +28,7 @@ export class Notification {
     link: string;
     target_id: string;
     target: string;
+    isActive: boolean;
   }) {
     this._id = options._id;
     this.message_title = options.message_title;
@@ -41,5 +43,6 @@ export class Notification {
     this.link = options.link;
     this.target_id = options.target_id;
     this.target = options.target;
+    this.isActive = options.isActive;
   }
 }

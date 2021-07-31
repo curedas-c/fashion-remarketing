@@ -13,6 +13,7 @@ import { TableModule } from '@shared/modules/table.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChipSelectorModule } from '@shared/modules/chip-selector.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PhoneOverviewModule } from '../@shared/modules/phone-overview.module';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PhoneOverviewModule } from '../@shared/modules/phone-overview.module';
     MatDialogModule,
     MatMenuModule,
     ChipSelectorModule,
+    MatSlideToggleModule,
     PhoneOverviewModule
   ],
   providers: [

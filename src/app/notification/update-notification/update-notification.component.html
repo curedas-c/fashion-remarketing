@@ -1,9 +1,13 @@
-<mat-stepper orientation="vertical" linear="true" #stepper>
+<mat-stepper orientation="vertical" linear="true" #stepper class="mat-elevation-z0">
     <mat-step [stepControl]="messageForm">
       <form [formGroup]="messageForm">
         <ng-template matStepLabel>Notification</ng-template>
 
         <div class="flex justify-between">
+
+          <div class="margin-y">
+            <mat-slide-toggle color="primary" formControlName="isActive">Activer / Désactiver</mat-slide-toggle>
+          </div>
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Titre de la notification (facultatif)</mat-label>
@@ -26,47 +30,20 @@
               <mat-icon>clear</mat-icon>
             </button>
           </mat-form-field>
+        </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Nom de la notification (facultatif)</mat-label>
-            <input matInput placeholder="Saisir le titre" formControlName="message_name" />
-          </mat-form-field>
+        <div class="flex justify-right">
+            <button mat-raised-button color="primary"
+            [disabled]="!messageForm.valid || isButtonDisabled" (click)="updateMessage()">Mettre à jour</button>
+            <button mat-stroked-button matStepperNext color="primary"
+              [disabled]="!messageForm.valid">Suivant</button>
         </div>
-        <div>
-          <button mat-button mat-flat-button matStepperNext color="primary"
-            [disabled]="!messageForm.valid">Suivant</button>
-        </div>
+
       </form>
     </mat-step>
 
 
-    <!--Step Two-->
-    <mat-step [stepControl]="targetForm" label="Redirection">
-      <form [formGroup]="targetForm">
-        <div class="flex justify-left">
-          <mat-form-field appearance="outline" class="quart full-width-m">
-            <mat-label>Rediriger au click vers:</mat-label>
-            <mat-select formControlName="target">
-              <mat-option value="none">Rien</mat-option>
-              <mat-option value="article">Article</mat-option>
-              <mat-option value="article-category">Catégorie d'article</mat-option>
-              <mat-option value="promotion">Promotion</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field [class.d-none]="!haveTarget" appearance="outline">
-            <mat-label>Recherche</mat-label>
-            <input matInput #searchInput>
-            <mat-icon matSuffix>search</mat-icon>
-            <mat-hint>3 charactères minimum</mat-hint>
-          </mat-form-field>
-        </div>
-
-        <app-chip-selector [itemList]="itemList" (onSelect)="setItem($event)"></app-chip-selector>
-      </form>
-    </mat-step>
-
-    <!--Step Three-->
+    <!--Step TWo-->
     <mat-step [stepControl]="scheduleForm" label="Planification">
       <form [formGroup]="scheduleForm">
         <div class="flex justify-left">
@@ -82,7 +59,7 @@
           </mat-form-field>
         </div>
 
-        <div *ngIf="scheduleForm.controls.schedule_startDate" class="flex justify-left">
+        <div *ngIf="isEveryday" class="flex justify-left">
           <mat-form-field appearance="outline">
             <mat-label>Periode</mat-label>
             <mat-date-range-input [rangePicker]="picker">
@@ -96,7 +73,7 @@
 
         <div class="flex justify-right">
           <button mat-button mat-flat-button color="primary" [disabled]="!scheduleForm.valid || isButtonDisabled"
-            (click)="createNotification()">Modifier la Planification</button>
+            (click)="updateSchedule()">Mettre à jour</button>
         </div>
 
 
