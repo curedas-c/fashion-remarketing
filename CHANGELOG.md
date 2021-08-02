@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.38.2](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.1...v1.38.2) (2021-08-02)
+
+
+### Bug Fixes
+
+* **cookies:** disable http-only flag for SSR support ([41d2de1](https://github.com/curedas-c/fashion-remarketing/commit/41d2de1af0ed1acf25b6dde6f0d884bf138e6344))
+
 ### [1.38.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.0...v1.38.1) (2021-07-31)
 
 
