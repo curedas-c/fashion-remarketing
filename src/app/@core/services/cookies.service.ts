@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CookieService, COOKIE_OPTIONS } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie';
 import { Observable, of } from 'rxjs';
 import { environment } from '@environments/environment';
 
@@ -17,7 +17,7 @@ export class CookiesService {
       this.cookie.put(key, JSON.stringify(content), {
         expires: date,
         secure: environment.production ? true : false,
-        httpOnly: environment.production ? true : false,
+        httpOnly: false,
         storeUnencoded: true,
       })
     );
