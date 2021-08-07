@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.40.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.39.0...v1.40.0) (2021-08-07)
+
+
+### Features
+
+* **environment:** sets heroku url as prod API url ([aa1c8c7](https://github.com/curedas-c/fashion-remarketing/commit/aa1c8c76052428a25560b2c5878afea1c2313564))
+
 ## [1.39.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.3...v1.39.0) (2021-08-07)
 
 
