@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.41.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.40.0...v1.41.0) (2021-08-07)
+
+
+### Features
+
+* adds serverstate module to avoid duplicate requests ([c9c83b5](https://github.com/curedas-c/fashion-remarketing/commit/c9c83b58d5502d00f7f2563bfeb8a54b24ccb71e))
+
 ## [1.40.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.39.0...v1.40.0) (2021-08-07)
 
 
