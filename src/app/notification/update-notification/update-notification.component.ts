@@ -66,6 +66,7 @@ export class UpdateNotificationComponent
   }
 
   initForms() {
+    console.log(this.currentNotification)
     this.messageForm = this.fb.group({
       message_title: [this.currentNotification.message_title || ''],
       message_text: [
@@ -232,9 +233,18 @@ export class UpdateNotificationComponent
     }
   }
 
+  setFiles(files: File[]) {
+    this.messageForm.controls.message_image.patchValue(files[0] || null);
+  }
+
   get isEveryday() {
     return (
       this.scheduleForm.controls.schedule_type.value === ScheduleTypes.EVERYDAY
     );
+  }
+
+  get defaultImage() {
+    const image = this.messageForm.controls.message_image.value;
+    return image ? [`http://localhost:3000/${image}`] : null;
   }
 }

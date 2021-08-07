@@ -1,0 +1,34 @@
+<article *ngIf="showPreview" [@inOutAnimation]>
+  <div class="flex justify-left full-width">
+    <image-preview *ngFor="let f of defaultFiles" [imageUrl]="f">
+    </image-preview>
+  </div>
+  <div class="flex justify-left margin-y">
+    <button mat-stroked-button color="primary" (click)="addFile()">Changer les images</button>
+  </div>
+</article>
+
+<section [class.d-none]="showPreview" >
+  <ngx-dropzone (change)="onSelect($event)" [multiple]="multiple" [accept]="accept" [maxFileSize]="maxSize">
+    <ngx-dropzone-label>Glissez et déposez, ou cliquez pour choisir un fichier</ngx-dropzone-label>
+  </ngx-dropzone>
+  
+  <div cdkDropList cdkDropListOrientation="horizontal" class="flex justify-left full-width drag-container" (cdkDropListDropped)="drop($event)">
+    <image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" class="ngx-dropzone-preview" cdkDragBoundary=".drag-container" [removable]="true" (removed)="onDelete(f)" cdkDrag>
+      <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+    </image-preview>
+  </div>
+</section>
+
+<image-cropper #imageCropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="aspectRatio"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<img [src]="croppedImage" />

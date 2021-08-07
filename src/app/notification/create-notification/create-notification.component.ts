@@ -30,7 +30,9 @@ import { NotificationService } from '../shared/notification.service';
   templateUrl: './create-notification.component.html',
   styleUrls: ['./create-notification.component.scss'],
 })
-export class CreateNotificationComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CreateNotificationComponent
+  implements OnInit, OnDestroy, AfterViewInit
+{
   @ViewChild('searchInput') input: ElementRef;
   messageForm: FormGroup;
   targetForm: FormGroup;
@@ -41,7 +43,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   schedulePlaceholder: string = 'Envoyer aux utilisateurs';
 
   itemList: any[];
-  message_link: string = '';
+  overviewImage: any;
   imagePlaceholder: string = 'assets/images/image_placeholder.png';
 
   isButtonDisabled = false;
@@ -55,9 +57,7 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   ) {}
 
   ngOnInit(): void {
-    this.initMessageForm();
-    this.initScheduleForm();
-    this.initTargetForm();
+    this.initForms();
   }
 
   ngOnDestroy() {
@@ -71,24 +71,19 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
     this.listenToInputChanges();
   }
 
-  initMessageForm() {
+  initForms() {
     this.messageForm = this.fb.group({
-      message_title: [''],
+      message_title: ['', [Validators.required]],
       message_text: ['', [Validators.required]],
       message_image: [''],
       message_name: [''],
     });
-  }
 
-  initTargetForm() {
     this.targetForm = this.fb.group({
       target: ['', [Validators.required]],
-      message_link: ['', [Validators.required]],
-      target_id: ['']
+      target_id: [''],
     });
-  }
 
-  initScheduleForm() {
     this.scheduleForm = this.fb.group({
       schedule_type: ['', [Validators.required]],
       schedule_time: ['', [Validators.required]],
@@ -163,27 +158,18 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
               this.scheduleForm,
               'schedule_endDate'
             );
-            this.scheduleForm = addControl(
-              this.scheduleForm,
-              'schedule_time'
-            );
+            this.scheduleForm = addControl(this.scheduleForm, 'schedule_time');
             break;
 
-            case ScheduleTypes.SCHEDULED:
-              this.scheduleForm = removeControls(
-                this.scheduleForm,
-                ['schedule_type', 'schedule_time', 'schedule_date'],
-                true
-              );
-              this.scheduleForm = addControl(
-                this.scheduleForm,
-                'schedule_date'
-              );
-              this.scheduleForm = addControl(
-                this.scheduleForm,
-                'schedule_time'
-              );
-              break;
+          case ScheduleTypes.SCHEDULED:
+            this.scheduleForm = removeControls(
+              this.scheduleForm,
+              ['schedule_type', 'schedule_time', 'schedule_date'],
+              true
+            );
+            this.scheduleForm = addControl(this.scheduleForm, 'schedule_date');
+            this.scheduleForm = addControl(this.scheduleForm, 'schedule_time');
+            break;
 
           default:
             break;
@@ -194,15 +180,8 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   listenToTargetChanges() {
     this.targetForm.controls.target.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((target: string) => {
+      .subscribe(() => {
         this.itemList = undefined;
-        if (['', 'none'].includes(target)) {
-          this.targetForm = removeControls(this.targetForm, ['message_link']);
-        } else {
-          this.input.nativeElement.value = '';
-          this.targetForm = addControl(this.targetForm, 'message_link');
-          this.targetForm.controls.message_link.patchValue('');
-        }
       });
   }
 
@@ -230,24 +209,30 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
     };
     switch (this.targetForm.controls.target.value) {
       case 'article':
-        this.message_link = '/route/to/article';
-        this.articleService.getAllItems(params).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
-          this.itemList = res;
-        })
+        this.articleService
+          .getAllItems(params)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe((res) => {
+            this.itemList = res;
+          });
         break;
 
       case 'article-category':
-        this.message_link = '/route/to/article-category';
-        this.categoryService.getAllItems(params).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
-          this.itemList = res;
-        })
+        this.categoryService
+          .getAllItems(params)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe((res) => {
+            this.itemList = res;
+          });
         break;
 
       case 'promotion':
-        this.message_link = '/route/to/promotion';
-        this.promoService.getAllItems(params).pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
-          this.itemList = res;
-        })
+        this.promoService
+          .getAllItems(params)
+          .pipe(takeUntil(this.unsubscribe$))
+          .subscribe((res) => {
+            this.itemList = res;
+          });
         break;
 
       default:
@@ -260,16 +245,19 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
     const DATA = this.fb.group({
       ...this.scheduleForm.controls,
       ...this.messageForm.controls,
-      ...this.targetForm.controls
+      ...this.targetForm.controls,
     });
     this.notificationService
       .setItem(DATA)
-      .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
-      .subscribe(
-        (res) => {
-          console.log(res);
-        }
-      );
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        finalize(() => {
+          this.switchButtonState();
+        })
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   switchButtonState() {
@@ -277,13 +265,21 @@ export class CreateNotificationComponent implements OnInit, OnDestroy, AfterView
   }
 
   setItem(item: any) {
-    let link = `${this.message_link}/${item._id}`;
     this.targetForm.controls.target_id.patchValue(item._id);
-    this.targetForm.controls.message_link.patchValue(link);
   }
 
   preview(event: any) {
-    if (event.target.files) {}
+    const file = event.target.files[0] as File;
+    if (file) {
+      this.overviewImage = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.overviewImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.overviewImage = null;
+    }
   }
 
   get haveTarget() {

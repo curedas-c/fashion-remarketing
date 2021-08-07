@@ -1,0 +1,17 @@
+<article *ngIf="imageUrl" class="d-flex justify-left align-center">
+  <h4>Image(s) Actuelle(s): </h4>
+  <div class="mat-elevation-z4 default">
+    <img mat-card-avatar [src]="imageUrl" class="big-image">
+  </div>
+</article>
+
+<mat-card *ngIf="srcImage" class="mat-elevation-z4 preview">
+  <mat-card-header>
+    <img mat-card-avatar [src]="srcImage" class="example-header-image">
+    <mat-card-subtitle>
+      <ng-content select="ngx-dropzone-label"></ng-content>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <ngx-dropzone-remove-badge *ngIf="showRemove && removable" (click)="_remove($event)">
+  </ngx-dropzone-remove-badge>
+</mat-card>

@@ -1210,6 +1210,13 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
+"@iplab/ngx-file-upload@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@iplab/ngx-file-upload/-/ngx-file-upload-3.3.1.tgz#ff55dfbfc5f67c7203406d7a78a16cc367d51c9a"
+  integrity sha512-aDlrpWagBNyrDkkl3SEbloWwL+cNhPf16eR450dkM7v2TbypLoOr5cOuGHxaqQ/jENGf+XbbUhy9iGiT14TK6g==
+  dependencies:
+    tslib "^2.1.0"
+
 "@istanbuljs/schema@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
@@ -6744,6 +6751,13 @@ neo-async@^2.6.0, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-awesome-uploader@^12.0.2:
+  version "12.0.2"
+  resolved "https://registry.yarnpkg.com/ngx-awesome-uploader/-/ngx-awesome-uploader-12.0.2.tgz#6fd95f52fefff2e6112a269d3d53f3a0349203f4"
+  integrity sha512-bLQcm+Hk7W4GsufHA0cTeK2ZXmjn+av2n/LnT+e9b9Ik7TU58ydH4eX+lAJih33AvTsaM4mH5DZMiT+4WY8AXw==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-cookie-backend@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/ngx-cookie-backend/-/ngx-cookie-backend-5.0.2.tgz#313ebd06680113c31b4551af83eb2f9e9f3806d9"
@@ -6757,6 +6771,27 @@ ngx-cookie@^5.0.2:
   integrity sha512-auivWhAhC5bW1HssvtQild1TREHWb1JtcKO0e+VGe9T7LHrfi5w2qcP8C58ly64PT+brZHQBvT1Azb7a6goHZA==
   dependencies:
     tslib "^2.0.0"
+
+ngx-dropzone@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone/-/ngx-dropzone-3.0.0.tgz#97a2005b419f932c34006498b4f47a8c38357840"
+  integrity sha512-rVTp/ORu7etkcwtXGtsph7sigziAr1DitnHS9JueoXPvYhhB/Ni00MuMl4MinCdU2o9Z9MWF0jzW7UrydcC71A==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-image-compress@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/ngx-image-compress/-/ngx-image-compress-11.0.3.tgz#26a84e44bfcc8a85ca681867125360b3d88d4f12"
+  integrity sha512-F1+93cBosm9bNEUmuQM3LvfBg9lzhEITfh8tEhqYb5+OH1HYsjW/nZLQGu5rDS4YCDEA8TQKwmYrrsYjR1t/WA==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-image-cropper@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-4.0.1.tgz#7844144103c362aaa499d3de139a8c3e49bfda04"
+  integrity sha512-Bl6VG7+dXQDfso5YAJ/9Dbq5Bt1xFsLM0fcyPcPyWt9qm40fofZGGP8Kg03d8/FdmdsoTbuLLHNh4r3YF2RtIw==
+  dependencies:
+    tslib "^1.10.0"
 
 ngx-material-file-input@^2.1.1:
   version "2.1.1"

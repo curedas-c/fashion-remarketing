@@ -5,7 +5,7 @@
         <h6>{{ title }}</h6>
         <h6>{{ text }}</h6>
       </div>
-      <img [src]="imagePlaceholder" class="overview-image">
+      <img [src]="image || imagePlaceholder" class="overview-image">
     </mat-card-content>
   </mat-card>
 </div>

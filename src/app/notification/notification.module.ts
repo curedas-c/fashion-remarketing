@@ -15,6 +15,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { ChipSelectorModule } from '@shared/modules/chip-selector.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PhoneOverviewModule } from '../@shared/modules/phone-overview.module';
+import { FileSelectorModule } from '../@shared/modules/file-selector.module';
 
 @NgModule({
   declarations: [NotificationComponent, CreateNotificationComponent, UpdateNotificationComponent, ListNotificationComponent],
@@ -28,7 +29,8 @@ import { PhoneOverviewModule } from '../@shared/modules/phone-overview.module';
     MatMenuModule,
     ChipSelectorModule,
     MatSlideToggleModule,
-    PhoneOverviewModule
+    PhoneOverviewModule,
+    FileSelectorModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

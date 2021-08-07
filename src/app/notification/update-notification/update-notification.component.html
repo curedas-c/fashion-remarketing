@@ -19,17 +19,9 @@
             <textarea matInput formControlName="message_text" row="2" required></textarea>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Image de la notification (facultatif)</mat-label>
-            <ngx-mat-file-input #coverImage formControlName="message_image" placeholder="Choisir une image"
-              [accept]="'image/*'" (change)="preview($event)"></ngx-mat-file-input>
-            <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
-              <mat-icon>image</mat-icon>
-            </button>
-            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
-              <mat-icon>clear</mat-icon>
-            </button>
-          </mat-form-field>
+          <div class="full-width margin-y">
+            <file-selector [defaultFiles]="defaultImage" (onFileChange)="setFiles($event)"></file-selector>
+          </div>
         </div>
 
         <div class="flex justify-right">

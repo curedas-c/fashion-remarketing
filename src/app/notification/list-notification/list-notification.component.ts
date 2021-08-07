@@ -60,6 +60,7 @@ export class ListNotificationComponent implements OnInit, OnDestroy {
   editItem(ev: Notification) {
     const dialogRef = this.dialog.open(UpdateNotificationComponent, {
       width: '800px',
+      maxHeight: '90vh',
       data: {currentNotification: ev}
     });
 
