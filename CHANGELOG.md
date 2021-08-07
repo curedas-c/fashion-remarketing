@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.39.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.3...v1.39.0) (2021-08-07)
+
+
+### Features
+
+* adds a file picker component ([7481601](https://github.com/curedas-c/fashion-remarketing/commit/748160164878c8cb8acf6ad26c5cdf65ef5120c5))
+
 ### [1.38.3](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.2...v1.38.3) (2021-08-02)
 
 ### [1.38.2](https://github.com/curedas-c/fashion-remarketing/compare/v1.38.1...v1.38.2) (2021-08-02)
