@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.43.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.42.0...v1.43.0) (2021-08-08)
+
+
+### Features
+
+* **file-selector:** set limits to file-selector component ([e700aa1](https://github.com/curedas-c/fashion-remarketing/commit/e700aa10d7e4e47e16b1fa005aa28a96ffd8c817))
+
 ## [1.42.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.41.1...v1.42.0) (2021-08-08)
 
 
