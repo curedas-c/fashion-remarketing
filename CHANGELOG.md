@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.42.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.41.1...v1.42.0) (2021-08-08)
+
+
+### Features
+
+* sets a file compressor service ([ccfe931](https://github.com/curedas-c/fashion-remarketing/commit/ccfe9319d5f0bd1ddbcb0c461fc5f00cea538ac5))
+
 ### [1.41.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.41.0...v1.41.1) (2021-08-08)
 
 
