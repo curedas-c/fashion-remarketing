@@ -20,7 +20,7 @@
           </mat-form-field>
 
           <div class="full-width margin-y">
-            <file-selector [defaultFiles]="defaultImage" (onFileChange)="setFiles($event)"></file-selector>
+            <file-selector [defaultFiles]="defaultImage" [maxCount]="1" (onFileChange)="setFiles($event)"></file-selector>
           </div>
         </div>
 

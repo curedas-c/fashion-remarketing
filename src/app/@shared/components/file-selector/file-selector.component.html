@@ -9,8 +9,8 @@
 </article>
 
 <section [class.d-none]="showPreview" >
-  <ngx-dropzone (change)="onSelect($event)" [multiple]="multiple" [accept]="accept" [maxFileSize]="maxSize">
-    <ngx-dropzone-label>Glissez et déposez, ou cliquez pour choisir un fichier</ngx-dropzone-label>
+  <ngx-dropzone (change)="onSelect($event)" [multiple]="multiple" [accept]="accept" [maxFileSize]="maxSize" [disabled]="disabled">
+    <ngx-dropzone-label>Glissez et déposez, ou cliquez pour choisir un fichier <br> (taille maximum de 2 MB)</ngx-dropzone-label>
   </ngx-dropzone>
   
   <div cdkDropList cdkDropListOrientation="horizontal" class="flex justify-left full-width drag-container" (cdkDropListDropped)="drop($event)">

@@ -19,7 +19,7 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 })
 export class FileSelectorComponent implements OnInit {
   @Input() maxSize: number = 2000000;
-  @Input() maxCount: number = 2;
+  @Input() maxCount: number = 1;
   @Input() multiple: boolean = false;
   @Input() accept: string = 'image/jpeg,image/jpg,image/png';
   @Input() defaultFiles: string[];
@@ -32,6 +32,7 @@ export class FileSelectorComponent implements OnInit {
   showPreview = false;
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  disabled = false;
   constructor() {}
 
   ngOnInit(): void {
@@ -43,12 +44,14 @@ export class FileSelectorComponent implements OnInit {
   onSelect(event) {
     this.files.push(...event.addedFiles);
     this.fileChangeEvent(event);
-    this.onFileChange.emit(event.addedFiles)
+    this.onFileChange.emit(event.addedFiles);
+    this.updateStatus();
   }
 
   onDelete(event) {
     this.files.splice(this.files.indexOf(event), 1);
-    this.onFileChange.emit(this.files)
+    this.onFileChange.emit(this.files);
+    this.updateStatus();
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -74,5 +77,9 @@ export class FileSelectorComponent implements OnInit {
   }
   loadImageFailed() {
     // show message
+  }
+
+  updateStatus() {
+    this.files.length === this.maxCount ? this.disabled = true : this.disabled = false;
   }
 }
