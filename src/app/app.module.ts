@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -37,9 +36,8 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    TransferHttpCacheModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    TransferHttpCacheModule,
     HttpClientModule,
     CookieModule.forRoot(),
     /* NbThemeModule.forRoot({ name: 'default' }),
