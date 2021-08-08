@@ -2303,6 +2303,11 @@ blocking-proxy@^1.0.0:
   dependencies:
     minimist "^1.2.0"
 
+blueimp-canvas-to-blob@^3.28.0:
+  version "3.28.0"
+  resolved "https://registry.yarnpkg.com/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.28.0.tgz#c8ab4dc6bb08774a7f273798cdf94b0776adf6c8"
+  integrity sha512-5q+YHzgGsuHQ01iouGgJaPJXod2AzTxJXmVv90PpGrRxU7G7IqgPqWXz+PBmt3520jKKi6irWbNV87DicEa7wg==
+
 body-parser@1.19.0, body-parser@^1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
@@ -2975,6 +2980,14 @@ compression@^1.7.4:
     on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
+
+compressorjs@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/compressorjs/-/compressorjs-1.0.7.tgz#67cd0b3b9ac97540515b22b334dc32eb92b730b1"
+  integrity sha512-ca+H8CGrn0LG103//VQmXBbNdvzvHiW26LGdWncp4RmLNbNQjaaFWIUxMN9++hbhGobLtofkHoxzzXGisNyD3w==
+  dependencies:
+    blueimp-canvas-to-blob "^3.28.0"
+    is-blob "^2.1.0"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -5407,6 +5420,11 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
+is-blob@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-blob/-/is-blob-2.1.0.tgz#e36cd82c90653f1e1b930f11baf9c64216a05385"
+  integrity sha512-SZ/fTft5eUhQM6oF/ZaASFDEdbFVe89Imltn9uZr03wdKMcWNVYSMjQPFtg05QuNkt5l5c135ElvXEQG0rk4tw==
+
 is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
@@ -6776,13 +6794,6 @@ ngx-dropzone@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ngx-dropzone/-/ngx-dropzone-3.0.0.tgz#97a2005b419f932c34006498b4f47a8c38357840"
   integrity sha512-rVTp/ORu7etkcwtXGtsph7sigziAr1DitnHS9JueoXPvYhhB/Ni00MuMl4MinCdU2o9Z9MWF0jzW7UrydcC71A==
-  dependencies:
-    tslib "^2.0.0"
-
-ngx-image-compress@^11.0.3:
-  version "11.0.3"
-  resolved "https://registry.yarnpkg.com/ngx-image-compress/-/ngx-image-compress-11.0.3.tgz#26a84e44bfcc8a85ca681867125360b3d88d4f12"
-  integrity sha512-F1+93cBosm9bNEUmuQM3LvfBg9lzhEITfh8tEhqYb5+OH1HYsjW/nZLQGu5rDS4YCDEA8TQKwmYrrsYjR1t/WA==
   dependencies:
     tslib "^2.0.0"
 

@@ -13,6 +13,7 @@ import { addControl, removeControls } from '@shared/utils/formGroupModifier';
 import { NotificationService } from '../shared/notification.service';
 import { Notification } from '@shared/models/notification/notification.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImageCompressService } from '@core/services/image-compress.service';
 
 @Component({
   selector: 'app-update-notification',
@@ -39,7 +40,8 @@ export class UpdateNotificationComponent
     public dialogRef: MatDialogRef<UpdateNotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private compressor: ImageCompressService
   ) {
     this.currentNotification = this.data.currentNotification;
   }
@@ -66,7 +68,6 @@ export class UpdateNotificationComponent
   }
 
   initForms() {
-    console.log(this.currentNotification)
     this.messageForm = this.fb.group({
       message_title: [this.currentNotification.message_title || ''],
       message_text: [
@@ -233,8 +234,12 @@ export class UpdateNotificationComponent
     }
   }
 
-  setFiles(files: File[]) {
-    this.messageForm.controls.message_image.patchValue(files[0] || null);
+  async setFiles(files: File[]) {
+    if (files[0]) {
+      const minifiedFile = await this.compressor.compressFile(files[0]) || files[0];
+      console.log(minifiedFile);
+      this.messageForm.controls.message_image.patchValue(minifiedFile);
+    }
   }
 
   get isEveryday() {
