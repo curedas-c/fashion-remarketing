@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.41.1](https://github.com/curedas-c/fashion-remarketing/compare/v1.41.0...v1.41.1) (2021-08-08)
+
+
+### Bug Fixes
+
+* fix ssr infinite loading and animations error ([92c59ee](https://github.com/curedas-c/fashion-remarketing/commit/92c59ee0e3078b332649a55ecd93abb5de898a9b))
+
 ## [1.41.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.40.0...v1.41.0) (2021-08-07)
 
 
