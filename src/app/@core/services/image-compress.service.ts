@@ -18,8 +18,11 @@ export class ImageCompressService {
     } else if (size <= 600000) {
       const minified = await this.compress(file, 70);
       return minified;
-    } else {
+    } else if (size <= 1500000) {
       const minified = await this.compress(file, 60);
+      return minified;
+    } else {
+      const minified = await this.compress(file, 50);
       return minified;
     }
   }
@@ -30,7 +33,12 @@ export class ImageCompressService {
         quality,
         mimeType: 'image/jpeg',
         success(res: Blob) {
-          resolve(new File([res], file.name, { lastModified: new Date().getTime(), type: 'image/jpeg' }));
+          resolve(
+            new File([res], file.name, {
+              lastModified: new Date().getTime(),
+              type: 'image/jpeg',
+            })
+          );
         },
         error(e) {
           reject(e);

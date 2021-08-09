@@ -4,12 +4,9 @@ import {
   Input,
   OnInit,
   Output,
-  EventEmitter,
-  ViewChild,
+  EventEmitter
 } from '@angular/core';
 import { inOutAnimation } from '@shared/animations/inOutAnimation';
-import { FilePickerComponent } from 'ngx-awesome-uploader';
-import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image-cropper';
 
 @Component({
   selector: 'file-selector',
@@ -20,18 +17,16 @@ import { ImageCroppedEvent, ImageCropperComponent, LoadedImage } from 'ngx-image
 export class FileSelectorComponent implements OnInit {
   @Input() maxSize: number = 2000000;
   @Input() maxCount: number = 1;
-  @Input() multiple: boolean = false;
+  @Input() multiple: boolean = true;
   @Input() accept: string = 'image/jpeg,image/jpg,image/png';
   @Input() defaultFiles: string[];
   @Input() aspectRatio: number = 1/1;
 
   @Output() onFileChange = new EventEmitter<any>();
-  @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent;
 
   files: File[] = [];
+  formattedFiles: File[] = [];
   showPreview = false;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
   disabled = false;
   constructor() {}
 
@@ -43,43 +38,42 @@ export class FileSelectorComponent implements OnInit {
 
   onSelect(event) {
     this.files.push(...event.addedFiles);
-    this.fileChangeEvent(event);
-    this.onFileChange.emit(event.addedFiles);
+    this.formattedFiles.push(...event.addedFiles);
+    this.emitFiles();
     this.updateStatus();
   }
 
   onDelete(event) {
     this.files.splice(this.files.indexOf(event), 1);
-    this.onFileChange.emit(this.files);
+    this.formattedFiles.splice(this.files.indexOf(event), 1);
+    this.emitFiles();
     this.updateStatus();
+  }
+
+  onCrop(event: any, index: any) {
+    this.formattedFiles[index] = event;
+    this.emitFiles();
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.files, event.previousIndex, event.currentIndex);
   }
 
+  emitFiles() {
+    this.onFileChange.emit(this.formattedFiles);
+  }
+
   addFile() {
     this.showPreview = false;
   }
 
-  // cropper events
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded(image: LoadedImage) {
-    this.imageCropper.crop()
-  }
-  cropperReady() {
-    // cropper ready
-  }
-  loadImageFailed() {
-    // show message
-  }
-
   updateStatus() {
-    this.files.length === this.maxCount ? this.disabled = true : this.disabled = false;
+    this.files.length >= this.maxCount ? this.disabled = true : this.disabled = false;
+    if (this.files.length > this.maxCount) {
+      do {
+        this.files.pop();
+        this.formattedFiles.pop();
+      } while (this.files.length > this.maxCount);
+    }
   }
 }

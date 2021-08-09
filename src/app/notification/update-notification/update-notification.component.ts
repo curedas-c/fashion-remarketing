@@ -14,6 +14,7 @@ import { NotificationService } from '../shared/notification.service';
 import { Notification } from '@shared/models/notification/notification.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ImageCompressService } from '@core/services/image-compress.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-update-notification',
@@ -31,8 +32,6 @@ export class UpdateNotificationComponent
   today: Date = new Date();
   scheduleType = ScheduleTypes;
   schedulePlaceholder: string = 'Envoyer aux utilisateurs';
-
-  imagePlaceholder: string = 'assets/images/image_placeholder.png';
 
   isButtonDisabled = false;
   private unsubscribe$ = new Subject();
@@ -236,9 +235,8 @@ export class UpdateNotificationComponent
 
   async setFiles(files: File[]) {
     if (files[0]) {
-      const minifiedFile = await this.compressor.compressFile(files[0]) || files[0];
-      console.log(minifiedFile);
-      this.messageForm.controls.message_image.patchValue(minifiedFile);
+      const minifiedFile = await this.compressor.compressFile(files[0]);
+      this.messageForm.controls.message_image.patchValue(minifiedFile || files[0]);
     }
   }
 
@@ -250,6 +248,6 @@ export class UpdateNotificationComponent
 
   get defaultImage() {
     const image = this.messageForm.controls.message_image.value;
-    return image ? [`http://localhost:3000/${image}`] : null;
+    return image ? [`${environment.rootUrl}/${image}`] : null;
   }
 }

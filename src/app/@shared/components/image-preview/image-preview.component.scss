@@ -6,6 +6,7 @@
     min-width: 15vw;
     max-width: 25vw;
     padding: .6rem .4rem;
+    cursor: move;
 
     .mat-card-subtitle {
       max-width: 8rem !important;
@@ -21,14 +22,14 @@
 
   .mat-elevation-z4.default {
     width: fit-content;
-    height: 80px;
+    height: 100px;
     margin-bottom: .6rem;
-    border-radius: 1rem !important;
+    border-radius: .4rem !important;
 
     .big-image {
-      height: 80px !important;
-      width: 80px !important;
-      border-radius: 1rem !important;
+      height: 100px !important;
+      width: 100px !important;
+      border-radius: .4rem !important;
     }
   }
 }

@@ -1,0 +1,19 @@
+<div>
+    <image-cropper *ngIf="file" #imageCropper
+    [imageFile]="file"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="aspectRatio"
+    format="jpeg"
+    [imageQuality]="90"
+    (imageCropped)="imageCropped($event)"
+></image-cropper>
+
+<div class="flex justify-center preview">
+    <img [src]="croppedImage" />
+</div>
+</div>
+
+<div class="flex justify-right margin-y">
+    <button mat-stroked-button color="primary" (click)="cancel()">Annuler</button>
+    <button mat-raised-button color="primary" (click)="close()">Valider</button>
+</div>

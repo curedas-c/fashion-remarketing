@@ -14,21 +14,8 @@
   </ngx-dropzone>
   
   <div cdkDropList cdkDropListOrientation="horizontal" class="flex justify-left full-width drag-container" (cdkDropListDropped)="drop($event)">
-    <image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" class="ngx-dropzone-preview" cdkDragBoundary=".drag-container" [removable]="true" (removed)="onDelete(f)" cdkDrag>
+    <image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files; let i = index" [file]="f" class="ngx-dropzone-preview" cdkDragBoundary=".drag-container" [aspectRatio]="aspectRatio" [removable]="true" (onCrop)="onCrop($event, i)" (removed)="onDelete(f)" cdkDrag>
       <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
     </image-preview>
   </div>
 </section>
-
-<image-cropper #imageCropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [aspectRatio]="aspectRatio"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded($event)"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-></image-cropper>
-
-<img [src]="croppedImage" />
