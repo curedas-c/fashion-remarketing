@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from '@environments/environment';
 
 import { ArticleService } from '../shared/article.service';
 import { ArticleCategoryService } from 'src/app/article-category/shared/services/article-category.service';
@@ -11,8 +12,8 @@ import {
 } from 'rxjs/operators';
 
 import { Article } from '@shared/models/article/article.model';
-import { addControl, removeControls } from '@shared/utils/formGroupModifier';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImageCompressService } from '@core/services/image-compress.service';
 
 @Component({
   selector: 'app-update-article',
@@ -33,7 +34,8 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private dataService: ArticleService,
-    private categoryService: ArticleCategoryService
+    private categoryService: ArticleCategoryService,
+    private compressor: ImageCompressService
   ) {
     this.currentArticle = this.data.currentArticle;
   }
@@ -51,6 +53,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     this.defaultForm = this.fb.group({
       label: [this.currentArticle.label, [Validators.required]],
       description: [this.currentArticle.description, [Validators.required]],
+      images: [this.currentArticle.images, [Validators.required]],
       category: [this.currentArticle.category, [Validators.required]],
       price: [this.currentArticle.price, [Validators.required]],
     });
@@ -103,15 +106,21 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     this.isButtonDisabled = !this.isButtonDisabled;
   }
 
-  removeControl() {
-    this.defaultForm = removeControls(this.defaultForm, ['images']);
+  async setFiles(files: File[]) {
+    if (files[0]) {
+      const minifiedFile = await this.compressor.compressFile(files[0]);
+      this.defaultForm.controls.images.patchValue(minifiedFile || files[0]);
+    }
   }
 
-  addControl() {
-    this.defaultForm = addControl(this.defaultForm, 'images');
-  }
-
-  get haveImageField() {
-    return this.defaultForm.controls.images;
+  get defaultImage() {
+    const urls = this.defaultForm.controls.images?.value;
+    if (urls?.constructor === Array) {
+      const images = urls.map(url => {
+        return `${environment.rootUrl}/${url}`
+      });
+      return images || null;
+    }
+    return urls ? [`${environment.rootUrl}/${urls}`] : null;
   }
 }

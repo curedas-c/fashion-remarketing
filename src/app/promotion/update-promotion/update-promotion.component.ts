@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from '@environments/environment';
 
 import { Subject, Observable } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -8,9 +9,8 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { removeControls, addControl } from '@shared/utils/formGroupModifier';
 
 import { PromotionService } from '../shared/services/promotion.service';
-import { ArticleCategoryService } from '../../article-category/shared/services/article-category.service';
-import { ArticleService } from '../../article/shared/article.service';
 import { Promotion } from '@shared/models/promo/promo.model';
+import { ImageCompressService } from '@core/services/image-compress.service';
 
 @Component({
   selector: 'app-update-promotion',
@@ -34,8 +34,7 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private promoService: PromotionService,
-    private categoryService: ArticleCategoryService,
-    private articleService: ArticleService
+    private compressor: ImageCompressService
   ) {
     this.currentPromotion = this.data.currentPromotion;
     // const items = this.currentPromotion.category ? this.currentPromotion.category : this.currentPromotion.articles;
@@ -141,6 +140,13 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
     this.isButtonDisabled = !this.isButtonDisabled;
   }
 
+  async setFiles(files: File[]) {
+    if (files[0]) {
+      const minifiedFile = await this.compressor.compressFile(files[0]);
+      this.defaultForm.controls.main_image.patchValue(minifiedFile || files[0]);
+    }
+  }
+
   get percentageChosen() {
     const discountType = this.itemsForm.controls.discountOn.value;
     return discountType && discountType === 'percentage';
@@ -149,6 +155,17 @@ export class UpdatePromotionComponent implements OnInit, OnDestroy {
   get priceChosen() {
     const discountType = this.itemsForm.controls.discountOn.value;
     return discountType && discountType === 'price';
+  }
+
+  get defaultImage() {
+    const urls = this.defaultForm.controls.main_image?.value;
+    if (urls?.constructor === Array) {
+      const images = urls.map(url => {
+        return `${environment.rootUrl}/${url}`
+      });
+      return images || null;
+    }
+    return urls ? [`${environment.rootUrl}/${urls}`] : null;
   }
 
 }

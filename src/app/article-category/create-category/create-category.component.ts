@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from '@environments/environment';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { Observable, Subject } from 'rxjs';
 import { finalize, map, takeUntil } from 'rxjs/operators';
 import { ArticleCategoryService } from '../shared/services/article-category.service';
 import { MatStepper } from '@angular/material/stepper';
+import { ImageCompressService } from '@core/services/image-compress.service';
 
 @Component({
   selector: 'app-create-category',
@@ -19,7 +21,8 @@ export class CreateCategoryComponent implements OnInit, OnDestroy {
   isButtonDisabled = false;
   private unsubscribe$ = new Subject();
   
-  constructor(private fb: FormBuilder, breakpointObserver: BreakpointObserver, private categoryService: ArticleCategoryService) {
+  constructor(private fb: FormBuilder, breakpointObserver: BreakpointObserver, private categoryService: ArticleCategoryService,
+    private compressor: ImageCompressService) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -60,4 +63,10 @@ export class CreateCategoryComponent implements OnInit, OnDestroy {
     this.isButtonDisabled = !this.isButtonDisabled;
   }
 
+  async setFiles(files: File[]) {
+    if (files) {
+      const minifiedFile = await this.compressor.compressFile(files[0]);
+      this.categoryCreationForm.controls.main_image.patchValue(minifiedFile || files[0]);
+    }
+  }
 }

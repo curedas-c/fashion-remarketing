@@ -22,28 +22,9 @@
           </mat-form-field>
         </div>
   
-        <div *ngIf="haveImageField" class="flex justify-left margin-y">
-          <mat-form-field matTooltip="Maintenez le bouton 'Ctrl' pour choisir plusieurs images" matTooltipPosition="before" class="full-width">
-            <mat-label>Images de l'article</mat-label>
-            <ngx-mat-file-input #coverImage formControlName="images" placeholder="Choisir une image de couverture"
-              [accept]="'image/*'" [required]="true" [multiple]="true"></ngx-mat-file-input>
-            <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
-              <mat-icon>image</mat-icon>
-            </button>
-            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
-              <mat-icon>clear</mat-icon>
-            </button>
-          </mat-form-field>
-          <button type="button" mat-icon-button class="button-warn" (click)="removeControl()">
-            <mat-icon>delete_outline</mat-icon>
-          </button>
+        <div class="full-width margin-y">
+          <file-selector [defaultFiles]="defaultImage" [maxCount]="6" (onFileChange)="setFiles($event)"></file-selector>
         </div>
-
-        <div *ngIf="!haveImageField" [@inOutAnimation] class="flex justify-left margin-y">
-            <button type="button" mat-button mat-stroked-button class="button-warn" (click)="addControl()">
-              <mat-icon inline=true matSuffix>edit</mat-icon>Modifier les images
-            </button>
-          </div>
   
         <div class="flex justify-left margin-y">
           <mat-form-field class="full-width">

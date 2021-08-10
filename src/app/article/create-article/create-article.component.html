@@ -22,18 +22,8 @@
         </mat-form-field>
       </div>
 
-      <div class="flex justify-left margin-y">
-        <mat-form-field matTooltip="Maintenez le bouton 'Ctrl' pour choisir plusieurs images" matTooltipPosition="before" class="full-width">
-          <mat-label>Images de l'article</mat-label>
-          <ngx-mat-file-input #coverImage formControlName="images" placeholder="Choisir une image de couverture"
-            [accept]="'image/*'" [required]="true" [multiple]="true"></ngx-mat-file-input>
-          <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
-            <mat-icon>image</mat-icon>
-          </button>
-          <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </mat-form-field>
+      <div class="full-width margin-y">
+        <file-selector [maxCount]="6" (onFileChange)="setFiles($event)"></file-selector>
       </div>
 
       <div class="flex justify-left margin-y">

@@ -12,6 +12,7 @@ import { SharedModule } from '@shared/modules/shared.module';
 import { TableModule } from '@shared/modules/table.module';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
+import { FileSelectorModule } from '@shared/modules/file-selector.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatChipsModule } from '@angular/material/chips';
     SharedModule,
     TableModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    FileSelectorModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

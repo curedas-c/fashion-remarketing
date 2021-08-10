@@ -11,6 +11,7 @@ import { ArticleCategoryComponent } from './article-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileSelectorModule } from '@shared/modules/file-selector.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     SharedModule,
     TableModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    FileSelectorModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

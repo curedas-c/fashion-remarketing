@@ -1,4 +1,5 @@
 <article *ngIf="showPreview" [@inOutAnimation]>
+  <h4>Image(s) Actuelle(s): </h4>
   <div class="flex justify-left full-width">
     <image-preview *ngFor="let f of defaultFiles" [imageUrl]="f">
     </image-preview>

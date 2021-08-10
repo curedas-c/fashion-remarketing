@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ArticleService } from '../shared/article.service';
 import { ArticleCategoryService } from 'src/app/article-category/shared/services/article-category.service';
+import { ImageCompressService } from '@core/services/image-compress.service';
 
 @Component({
   selector: 'app-create-article',
@@ -21,7 +22,8 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
-    private categoryService: ArticleCategoryService
+    private categoryService: ArticleCategoryService,
+    private compressor: ImageCompressService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$), finalize(() => { this.switchButtonState() }))
       .subscribe(
         (res) => {
-          console.log(res);
+          this.creationForm.reset();
         }
       );
   }
@@ -61,5 +63,20 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
 
   switchButtonState() {
     this.isButtonDisabled = !this.isButtonDisabled;
+  }
+
+  async setFiles(files: File[]) {
+    if (files.length > 0) {
+      const minifiedFiles = await Promise.all(
+        files.map(async (file) => {
+          const minified = await this.compressor.compressFile(file);
+          return minified || file;
+        })
+      );
+      this.creationForm.controls.images.patchValue(minifiedFiles);
+    }
+    else {
+      this.creationForm.controls.images.patchValue(null);
+    }
   }
 }

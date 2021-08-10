@@ -247,7 +247,13 @@ export class UpdateNotificationComponent
   }
 
   get defaultImage() {
-    const image = this.messageForm.controls.message_image.value;
-    return image ? [`${environment.rootUrl}/${image}`] : null;
+    const urls = this.messageForm.controls.message_image?.value;
+    if (urls?.constructor === Array) {
+      const images = urls.map(url => {
+        return `${environment.rootUrl}/${url}`
+      });
+      return images || null;
+    }
+    return urls ? [`${environment.rootUrl}/${urls}`] : null;
   }
 }

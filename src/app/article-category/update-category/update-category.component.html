@@ -11,15 +11,9 @@
           <textarea matInput placeholder="Ex: Des chemises d'exception pour toutes les occasions"
             formControlName="description" required></textarea>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Choisir une image de couverture</mat-label>
-          <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture"
-            [accept]="'image/*'"></ngx-mat-file-input>
-          <mat-icon *ngIf="coverImage.empty" matSuffix>folder</mat-icon>
-          <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </mat-form-field>
+        <div class="full-width margin-y">
+          <file-selector [defaultFiles]="defaultImage" [maxCount]="1" (onFileChange)="setFiles($event)"></file-selector>
+        </div>
       </div>
       <div>
         <button mat-button mat-flat-button color="primary" [disabled]="!defaultForm.valid"

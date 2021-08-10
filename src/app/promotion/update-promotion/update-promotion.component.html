@@ -16,17 +16,9 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
   
-          <mat-form-field class="quart full-width-m">
-            <mat-label>Choisir une image de couverture</mat-label>
-            <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture"
-              [accept]="'image/*'"></ngx-mat-file-input>
-            <button *ngIf="coverImage.empty" mat-icon-button matSuffix>
-              <mat-icon>image</mat-icon>
-            </button>
-            <button *ngIf="!coverImage.empty" mat-icon-button matSuffix (click)="coverImage.clear($event)">
-              <mat-icon>clear</mat-icon>
-            </button>
-          </mat-form-field>
+          <div class="full-width margin-y">
+            <file-selector [defaultFiles]="defaultImage" [maxCount]="1" (onFileChange)="setFiles($event)"></file-selector>
+          </div>
         </div>
         <div>
           <button mat-button mat-flat-button matStepperNext color="primary"

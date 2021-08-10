@@ -80,8 +80,9 @@ export class ArticleCategoryService {
       if (value.constructor === FileInput) {
         formData.append(key, value.files[0]);
       } else if (value.constructor === Array) {
+        const isFileArray = value[0].constructor === File ? true : false;
         value.forEach((item) => {
-          formData.append(key + '[]', item);
+          formData.append(isFileArray ? key : `${key}[]`, item);
         });
       } else {
         formData.append(key, value);
