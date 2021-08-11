@@ -4,11 +4,11 @@
       <form [formGroup]="categoryCreationForm">
         <ng-template matStepLabel>Créez une Catégorie d'article</ng-template>
         <div class="flex justify-left column">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" matTooltip="Nom de la catégorie de produits">
             <mat-label>Nom</mat-label>
-            <input matInput placeholder="Ex: chemises" formControlName="label" required />
+            <input matInput placeholder="Exemple: Chemises" formControlName="label" required />
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" matTooltip="Décrivez brièvement la catégorie pour orienter vos clients">
             <mat-label>Description</mat-label>
             <textarea matInput placeholder="Ex: Des chemises d'exception pour toutes les occasions" formControlName="description" required></textarea>
           </mat-form-field>
@@ -26,8 +26,7 @@
   
     <!--Step Two-->
     <mat-step label="Prochaines Etapes">
-      <h2>Catégorie créée.</h2>
-      <p>Vous pouvez maintenant ajouter des articles:</p>
+      <p>Vous pouvez maintenant ajouter des articles aux catégories que vous avez créées:</p>
       <div class="flex justify-left">
         <mat-card routerLink='/dashboard/article' class="menu-card" color="accent">
           <mat-card-header>

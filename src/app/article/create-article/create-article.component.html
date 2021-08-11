@@ -3,12 +3,12 @@
     <form [formGroup]="creationForm">
 
       <div class="flex justify-between align-end margin-y">
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="quart full-width-m" appearance="outline" matTooltip="Nom du produit dans votre boutique">
           <mat-label>Titre de l'article</mat-label>
           <input matInput formControlName="label" required />
         </mat-form-field>
 
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="quart full-width-m" appearance="outline" matTooltip="Catégorie(s) d'appartenance">
           <mat-label>Catégories de l'article</mat-label>
           <mat-select formControlName="category" multiple>
             <mat-option *ngFor="let category of categoryList$ | async" [value]="category._id">{{ category.label }}
@@ -16,18 +16,18 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="quart full-width-m" appearance="outline" matTooltip="Prix de vente">
           <mat-label>Prix de l'article</mat-label>
           <input matInput formControlName="price" type="number" required />
         </mat-form-field>
       </div>
 
-      <div class="full-width margin-y">
+      <div class="full-width margin-y" matTooltip="images descriptives du produits">
         <file-selector [maxCount]="6" (onFileChange)="setFiles($event)"></file-selector>
       </div>
 
-      <div class="flex justify-left margin-y">
-        <mat-form-field class="full-width">
+      <div class="flex justify-left margin-y" matTooltip="Entrez tout les détails à afficher au client concernant ce produit">
+        <mat-form-field class="full-width" appearance="outline">
           <mat-label>Description</mat-label>
           <textarea matInput formControlName="description" required></textarea>
         </mat-form-field>
@@ -46,7 +46,7 @@
 <mat-card *ngIf="previewVisible" [@inOutAnimation]>
   <mat-card-content>
     <article>
-      <h1>TO DO: OVERVIEW CARD</h1>
+      <h1>Fonctionnalité Non Disponible pour l'instant</h1> <!--TODO: Overview-->
 
       <div class="margin-y flex justify-left">
         <button type="button" mat-button mat-stroked-button class="button-warn"

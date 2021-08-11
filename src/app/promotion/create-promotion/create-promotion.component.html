@@ -3,20 +3,22 @@
     <form [formGroup]="creationForm">
       <ng-template matStepLabel>Créez une promotion</ng-template>
       <div class="flex justify-left margin-y">
-        <mat-form-field class="tiers">
+        <mat-form-field class="tiers" appearance="outline" matTooltip="Nom à afficher au client pour la promotion">
           <mat-label>Nom de la promo</mat-label>
           <input matInput formControlName="label" placeholder="Promo sur les Mocassins Homme" required />
         </mat-form-field>
-      </div>
-      <div class="flex justify-left align-end margin-y">
-        <mat-form-field class="quart full-width-m">
+
+        <mat-form-field class="quart full-width-m" appearance="outline" matTooltip="Date à laquelle la promotion prend fin">
           <mat-label>Date de fin</mat-label>
           <input matInput formControlName="endDate" [matDatepicker]="picker" [min]="minDate" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+      </div>
+      <div class="flex justify-left align-end margin-y">
+        
 
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="tiers full-width-m" appearance="outline" matTooltip="image à mettre en avant">
           <mat-label>Choisir une image de couverture</mat-label>
           <ngx-mat-file-input #coverImage formControlName="main_image" placeholder="Choisir une image de couverture"
             [accept]="'image/*'"></ngx-mat-file-input>
@@ -41,7 +43,7 @@
 
     <form [formGroup]="itemsForm">
       <div class="flex justify-left align-end margin-y">
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="quart full-width-m" appearance="outline">
           <mat-label>Cette promotion vise des:</mat-label>
           <mat-select formControlName="target">
             <mat-option value="category">Catégories d'article</mat-option>
@@ -49,7 +51,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="quart full-width-m">
+        <mat-form-field class="quart full-width-m" appearance="outline" matTooltip="Précisez la manière de calculer les tarifs promotionnels">
           <mat-label>Type de promotion</mat-label>
           <mat-select formControlName="discountOn">
             <mat-option value="percentage">Remise (pourcentage)</mat-option>
@@ -57,12 +59,12 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field *ngIf="percentageChosen" class="quart full-width-m">
+        <mat-form-field *ngIf="percentageChosen" appearance="outline" class="quart full-width-m">
             <mat-label>Remise (taux %)</mat-label>
             <input matInput type="number" formControlName="percentage" min="1" max="99" required />
           </mat-form-field>
 
-          <mat-form-field *ngIf="priceChosen" class="quart full-width-m">
+          <mat-form-field *ngIf="priceChosen" appearance="outline" class="quart full-width-m">
             <mat-label>Prix</mat-label>
             <input matInput type="number" formControlName="fixedPrice" min="1" required />
           </mat-form-field>

@@ -45,7 +45,7 @@
     <mat-step [stepControl]="targetForm" label="Redirection">
       <form [formGroup]="targetForm">
         <div class="flex justify-left">
-          <mat-form-field appearance="outline" class="quart full-width-m">
+          <mat-form-field appearance="outline" class="quart full-width-m" matTooltip="Choisir l'action au click du client">
             <mat-label>Rediriger au click vers:</mat-label>
             <mat-select formControlName="target">
               <mat-option value="none">Rien</mat-option>
@@ -55,7 +55,7 @@
             </mat-select>
           </mat-form-field>
 
-          <mat-form-field [class.d-none]="!haveTarget" appearance="outline">
+          <mat-form-field [class.d-none]="!haveTarget" appearance="outline" matTooltip="entrez le nom de l'élement">
             <mat-label>Recherche</mat-label>
             <input matInput #searchInput>
             <mat-icon matSuffix>search</mat-icon>
@@ -71,7 +71,7 @@
     <mat-step [stepControl]="scheduleForm" label="Planification">
       <form [formGroup]="scheduleForm">
         <div class="flex justify-left">
-          <mat-form-field appearance="outline" class="tiers full-width-m" [matMenuTriggerFor]="menu">
+          <mat-form-field appearance="outline" class="tiers full-width-m" [matMenuTriggerFor]="menu" matTooltip="Choisir quand envoyer la notification">
             <mat-label>{{ schedulePlaceholder }}</mat-label>
             <input matInput [readonly]="true" />
           </mat-form-field>
