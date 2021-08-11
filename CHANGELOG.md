@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.46.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.45.0...v1.46.0) (2021-08-11)
+
+
+### Features
+
+* adds tooltips across app ([cc75774](https://github.com/curedas-c/fashion-remarketing/commit/cc7577404fe8a693d1305377f8b1191ae0fbae11))
+
 ## [1.45.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.44.0...v1.45.0) (2021-08-10)
 
 
