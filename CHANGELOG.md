@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.47.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.46.0...v1.47.0) (2021-08-11)
+
+
+### Features
+
+* make main navbar disappear on mobile ([3d8f5a2](https://github.com/curedas-c/fashion-remarketing/commit/3d8f5a25f277c7e17507c8c228c18211c71ebf21))
+
 ## [1.46.0](https://github.com/curedas-c/fashion-remarketing/compare/v1.45.0...v1.46.0) (2021-08-11)
 
 
