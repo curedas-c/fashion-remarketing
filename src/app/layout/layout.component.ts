@@ -9,6 +9,7 @@ import { menu } from '@shared/models/menu.model';
 })
 export class LayoutComponent implements OnInit {
   opened: boolean;
+  menuButtonVisible: boolean;
   menu: menu[] = MAIN_MENU;
 
   constructor(public breakpointObserver: BreakpointObserver) {}
@@ -18,10 +19,18 @@ export class LayoutComponent implements OnInit {
       .observe(['(min-width: 768px)'])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
+          this.menuButtonVisible = false;
           this.opened = true;
         } else {
+          this.menuButtonVisible = true;
           this.opened = false;
         }
       });
+  }
+
+  closeMenu() {
+    if (this.menuButtonVisible) {
+      this.opened = false;
+    }
   }
 }

@@ -1,6 +1,6 @@
 <mat-toolbar color="accent">
   <div>
-    <button (click)="sidenav.toggle()" mat-icon-button>
+    <button *ngIf="menuButtonVisible" (click)="sidenav.toggle()" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <span>Remarket my Business</span>
@@ -15,7 +15,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened" [fixedInViewport]="true" [fixedTopGap]="54">
     <mat-list>
-      <mat-list-item *ngFor="let nav of menu" [routerLink]="nav.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
+      <mat-list-item *ngFor="let nav of menu" [routerLink]="nav.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" (click)="closeMenu()">
         <mat-icon matListIcon>{{ nav.menu.icon }}</mat-icon>
         <h3 matLine> {{ nav.menu.title }} </h3>
       </mat-list-item>

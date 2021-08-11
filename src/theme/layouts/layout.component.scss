@@ -22,6 +22,7 @@ app-layout {
     position: -webkit-sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 0 0.7rem 0 $primary_shade !important;
 
     span {
       vertical-align: middle;
